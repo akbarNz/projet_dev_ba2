@@ -29,16 +29,16 @@
           <mxGeometry y="113" width="272" height="119" as="geometry" />
         </mxCell>
         <mxCell id="evRFQ8Dqrcnhtjwd-w8t-5" value="Collection" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="463" y="34" width="305" height="176" as="geometry" />
+          <mxGeometry x="463" y="34" width="305" height="152" as="geometry" />
         </mxCell>
         <mxCell id="evRFQ8Dqrcnhtjwd-w8t-6" value="+ nom: string&lt;div&gt;&lt;div&gt;+ liste_oeuvre : list[Oeuvre]&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="evRFQ8Dqrcnhtjwd-w8t-5" vertex="1">
-          <mxGeometry y="26" width="305" height="42" as="geometry" />
+          <mxGeometry y="26" width="305" height="37" as="geometry" />
         </mxCell>
         <mxCell id="evRFQ8Dqrcnhtjwd-w8t-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="evRFQ8Dqrcnhtjwd-w8t-5" vertex="1">
-          <mxGeometry y="68" width="305" height="21" as="geometry" />
+          <mxGeometry y="63" width="305" height="7" as="geometry" />
         </mxCell>
         <mxCell id="evRFQ8Dqrcnhtjwd-w8t-8" value="+ affiche_collection(): void&lt;div&gt;+ creer_sous_collection(année: int, artiste: list[Artiste], courant: string, nom_sous_collection: string): Collection&lt;/div&gt;&lt;div&gt;+ ajouter_oeuvre(oeuvre:Oeuvre): void&lt;/div&gt;&lt;div&gt;+ supprimer_oeuvre(oeuvre: Oeuvre): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="evRFQ8Dqrcnhtjwd-w8t-5" vertex="1">
-          <mxGeometry y="89" width="305" height="87" as="geometry" />
+          <mxGeometry y="70" width="305" height="82" as="geometry" />
         </mxCell>
         <mxCell id="evRFQ8Dqrcnhtjwd-w8t-9" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
