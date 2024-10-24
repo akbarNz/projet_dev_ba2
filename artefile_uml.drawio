@@ -17,7 +17,7 @@
           <mxGeometry y="135" width="160" height="53" as="geometry" />
         </mxCell>
         <mxCell id="evRFQ8Dqrcnhtjwd-w8t-5" value="Collection" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="266" y="139" width="305" height="176" as="geometry" />
+          <mxGeometry x="381" y="142" width="305" height="176" as="geometry" />
         </mxCell>
         <mxCell id="evRFQ8Dqrcnhtjwd-w8t-6" value="+ nom: string&lt;div&gt;&lt;div&gt;+ liste_oeuvre : list[Oeuvre]&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="evRFQ8Dqrcnhtjwd-w8t-5">
           <mxGeometry y="26" width="305" height="42" as="geometry" />
@@ -27,6 +27,12 @@
         </mxCell>
         <mxCell id="evRFQ8Dqrcnhtjwd-w8t-8" value="+ affiche_collection(): void&lt;div&gt;+ creer_sous_collection(année: int, artiste: list[Artiste], courant: string, nom_sous_collection: string): Collection&lt;/div&gt;&lt;div&gt;+ ajouter_oeuvre(oeuvre:Oeuvre): void&lt;/div&gt;&lt;div&gt;+ supprimer_oeuvre(oeuvre: Oeuvre): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="evRFQ8Dqrcnhtjwd-w8t-5">
           <mxGeometry y="89" width="305" height="87" as="geometry" />
+        </mxCell>
+        <mxCell id="evRFQ8Dqrcnhtjwd-w8t-9" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="221" y="227" as="sourcePoint" />
+            <mxPoint x="381" y="227" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
