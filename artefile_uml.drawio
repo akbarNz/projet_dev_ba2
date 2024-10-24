@@ -59,7 +59,7 @@
           <mxGeometry y="102" width="248" height="120" as="geometry" />
         </mxCell>
         <mxCell id="oPv2lNs6lQToN5GE80Rn-0" value="Organisateur" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="475" y="535" width="286" height="145" as="geometry" />
+          <mxGeometry x="479" y="540" width="286" height="145" as="geometry" />
         </mxCell>
         <mxCell id="oPv2lNs6lQToN5GE80Rn-1" value="+ nom: string&lt;div&gt;+ prénom: string&lt;/div&gt;&lt;div&gt;+ collections: Collection&lt;/div&gt;&lt;div&gt;+ expositions: list[Exposition]&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="oPv2lNs6lQToN5GE80Rn-0" vertex="1">
           <mxGeometry y="26" width="286" height="69" as="geometry" />
