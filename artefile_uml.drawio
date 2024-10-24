@@ -17,7 +17,7 @@
           <mxGeometry y="135" width="160" height="53" as="geometry" />
         </mxCell>
         <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-0" value="Artiste" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="332" y="224" width="272" height="232" as="geometry" />
+          <mxGeometry x="314" y="420" width="272" height="232" as="geometry" />
         </mxCell>
         <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-1" value="&lt;div&gt;+ nom: String&lt;/div&gt;&lt;div&gt;+ prenom : String&lt;/div&gt;&lt;div&gt;+ biographie : string&lt;/div&gt;&lt;div&gt;+ date_naissance : str&lt;/div&gt;&lt;div&gt;+ date_deces : str = Null&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="I2Vo8YAyR-l4Du6Dh9Zq-0">
           <mxGeometry y="26" width="272" height="79" as="geometry" />
