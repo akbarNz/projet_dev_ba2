@@ -1,11 +1,20 @@
+from datetime import datetime
+
 class Artiste:
     def __init__(self, nom, prenom, bio, date_naissance, date_deces=None):
         self.nom = nom
         self.prenom = prenom
         self.bio = bio
-        self.date_naissance = date_naissance
-        self.date_deces = date_deces
+        self.date_naissance = self._convertir_date(date_naissance)
+        self.date_deces = self._convertir_date(date_deces) if date_deces else None
         self.oeuvres = []
+
+    def _convertir_date(self, date_str):
+        try:
+            return datetime.strptime(date_str, "%Y-%m-%d")
+        except ValueError:
+            print("Format de date incorrect. Utilisez AAAA-MM-JJ.")
+            return None
 
     def __str__(self):
         return f"Artiste: {self.prenom} {self.nom}, Bio: {self.bio}"
@@ -32,7 +41,8 @@ class Collection:
         print(f"Oeuvre '{oeuvre.titre}' ajoutée à la collection '{self.nom}'.")
 
     def __str__(self):
-        return f"Collection: {self.nom} avec les œuvres: {[oeuvre.titre for oeuvre in self.oeuvres]}"
+        oeuvres_titres = ', '.join([oeuvre.titre for oeuvre in self.oeuvres])
+        return f"Collection: {self.nom} avec les œuvres: [{oeuvres_titres}]"
 
 class Exposition:
     def __init__(self, nom, date_debut, date_fin, collection):
@@ -68,16 +78,18 @@ def ajouter_ou_trouver_oeuvre():
     if input("Oeuvre non trouvée. Voulez-vous la créer ? (oui/non): ").lower() == "oui":
         description = input("Description de l'œuvre: ")
         artiste = creer_ou_trouver_artiste()
-        oeuvre = Oeuvre(titre, description, artiste)
-        oeuvres.append(oeuvre)
-        return oeuvre
+        if artiste:
+            oeuvre = Oeuvre(titre, description, artiste)
+            oeuvres.append(oeuvre)
+            return oeuvre
     return None
 
-artistes = []
-oeuvres = []
-collections = []
-
 def main():
+    global artistes, oeuvres, collections
+    artistes = []
+    oeuvres = []
+    collections = []
+
     while True:
         choix = input("Voulez-vous gérer un 'artiste', une 'oeuvre', une 'collection', une 'exposition' ou 'quitter' ? ")
         if choix.lower() == 'quitter':
