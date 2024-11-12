@@ -1,9 +1,8 @@
 from datetime import datetime
 
 class Artiste:
-    def __init__(self, nom, prenom, bio, date_naissance, date_deces=None):
-        self.nom = nom
-        self.prenom = prenom
+    def __init__(self, identite, bio, date_naissance, date_deces=None):
+        self.identite = identite  # Nom complet (ex: "Prénom Nom")
         self.bio = bio
         self.date_naissance = self._convertir_date(date_naissance)
         self.date_deces = self._convertir_date(date_deces) if date_deces else None
@@ -17,7 +16,7 @@ class Artiste:
             return None
 
     def __str__(self):
-        return f"Artiste: {self.prenom} {self.nom}, Bio: {self.bio}"
+        return f"Artiste: {self.identite}, Bio: {self.bio}"
 
 class Oeuvre:
     def __init__(self, titre, description, artiste=None):
@@ -28,7 +27,7 @@ class Oeuvre:
             artiste.oeuvres.append(self)
 
     def __str__(self):
-        artiste_info = f"{self.artiste.prenom} {self.artiste.nom}" if self.artiste else "Inconnu"
+        artiste_info = self.artiste.identite if self.artiste else "Inconnu"
         return f"Oeuvre: {self.titre}, Artiste: {artiste_info}, Description: {self.description}"
 
 class Collection:
@@ -55,17 +54,20 @@ class Exposition:
         return f"Exposition: {self.nom}, du {self.date_debut} au {self.date_fin}, Collection: {self.collection.nom}"
 
 def creer_ou_trouver_artiste():
-    nom = input("Entrez le nom complet de l'artiste à rechercher ou créer: ")
+    identite = input("Entrez le nom complet de l'artiste (Prénom Nom): ")
+    
+    # Vérifier l'existence de l'artiste avec son nom complet
     for artiste in artistes:
-        if artiste.nom.lower() == nom.lower():
+        if artiste.identite.lower() == identite.lower():
             return artiste
+
+    # Artiste non trouvé, proposer de le créer
     print("Artiste non trouvé.")
     if input("Voulez-vous créer cet artiste ? (oui/non): ").lower() == "oui":
-        prenom = input("Prénom de l'artiste: ")
         bio = input("Biographie: ")
         date_naissance = input("Date de naissance (AAAA-MM-JJ): ")
         date_deces = input("Date de décès (si applicable, sinon laisser vide): ") or None
-        artiste = Artiste(nom, prenom, bio, date_naissance, date_deces)
+        artiste = Artiste(identite, bio, date_naissance, date_deces)
         artistes.append(artiste)
         return artiste
     return None
