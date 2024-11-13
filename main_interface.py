@@ -1,67 +1,13 @@
-from datetime import datetime
+# main_interface.py
 
-class Artiste:
-    def __init__(self, identite, bio, date_naissance, date_deces=None):
-        self.identite = identite  # Nom complet (ex: "Prénom Nom")
-        self.bio = bio
-        self.date_naissance = self._convertir_date(date_naissance)
-        self.date_deces = self._convertir_date(date_deces) if date_deces else None
-        self.oeuvres = []
+from art_management import Artiste, Oeuvre, Collection, Exposition, trouver_artiste_par_nom, trouver_oeuvre_par_titre
 
-    def _convertir_date(self, date_str):
-        try:
-            return datetime.strptime(date_str, "%Y-%m-%d")
-        except ValueError:
-            print("Format de date incorrect. Utilisez AAAA-MM-JJ.")
-            return None
-
-    def __str__(self):
-        return f"Artiste: {self.identite}, Bio: {self.bio}"
-
-class Oeuvre:
-    def __init__(self, titre, description, artiste=None):
-        self.titre = titre
-        self.description = description
-        self.artiste = artiste
-        if artiste:
-            artiste.oeuvres.append(self)
-
-    def __str__(self):
-        artiste_info = self.artiste.identite if self.artiste else "Inconnu"
-        return f"Oeuvre: {self.titre}, Artiste: {artiste_info}, Description: {self.description}"
-
-class Collection:
-    def __init__(self, nom):
-        self.nom = nom
-        self.oeuvres = []
-
-    def ajouter_oeuvre(self, oeuvre):
-        self.oeuvres.append(oeuvre)
-        print(f"Oeuvre '{oeuvre.titre}' ajoutée à la collection '{self.nom}'.")
-
-    def __str__(self):
-        oeuvres_titres = ', '.join([oeuvre.titre for oeuvre in self.oeuvres])
-        return f"Collection: {self.nom} avec les œuvres: [{oeuvres_titres}]"
-
-class Exposition:
-    def __init__(self, nom, date_debut, date_fin, collection):
-        self.nom = nom
-        self.date_debut = date_debut
-        self.date_fin = date_fin
-        self.collection = collection
-
-    def __str__(self):
-        return f"Exposition: {self.nom}, du {self.date_debut} au {self.date_fin}, Collection: {self.collection.nom}"
-
-def creer_ou_trouver_artiste():
+def creer_ou_trouver_artiste(artistes):
     identite = input("Entrez le nom complet de l'artiste (Prénom Nom): ")
-    
-    # Vérifier l'existence de l'artiste avec son nom complet
-    for artiste in artistes:
-        if artiste.identite.lower() == identite.lower():
-            return artiste
+    artiste = trouver_artiste_par_nom(artistes, identite)
+    if artiste:
+        return artiste
 
-    # Artiste non trouvé, proposer de le créer
     print("Artiste non trouvé.")
     if input("Voulez-vous créer cet artiste ? (oui/non): ").lower() == "oui":
         bio = input("Biographie: ")
@@ -72,14 +18,15 @@ def creer_ou_trouver_artiste():
         return artiste
     return None
 
-def ajouter_ou_trouver_oeuvre():
+def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
     titre = input("Entrez le titre de l'œuvre à rechercher ou créer: ")
-    for oeuvre in oeuvres:
-        if oeuvre.titre.lower() == titre.lower():
-            return oeuvre
+    oeuvre = trouver_oeuvre_par_titre(oeuvres, titre)
+    if oeuvre:
+        return oeuvre
+
     if input("Oeuvre non trouvée. Voulez-vous la créer ? (oui/non): ").lower() == "oui":
         description = input("Description de l'œuvre: ")
-        artiste = creer_ou_trouver_artiste()
+        artiste = creer_ou_trouver_artiste(artistes)
         if artiste:
             oeuvre = Oeuvre(titre, description, artiste)
             oeuvres.append(oeuvre)
@@ -87,7 +34,6 @@ def ajouter_ou_trouver_oeuvre():
     return None
 
 def main():
-    global artistes, oeuvres, collections
     artistes = []
     oeuvres = []
     collections = []
@@ -97,11 +43,11 @@ def main():
         if choix.lower() == 'quitter':
             break
         elif choix.lower() == 'artiste':
-            artiste = creer_ou_trouver_artiste()
+            artiste = creer_ou_trouver_artiste(artistes)
             if artiste:
                 print(artiste)
         elif choix.lower() == 'oeuvre':
-            oeuvre = ajouter_ou_trouver_oeuvre()
+            oeuvre = ajouter_ou_trouver_oeuvre(artistes, oeuvres)
             if oeuvre:
                 print(oeuvre)
         elif choix.lower() == 'collection':
@@ -114,7 +60,7 @@ def main():
                 ajout = input("Voulez-vous ajouter une oeuvre à cette collection ? (oui/non): ")
                 if ajout.lower() == 'non':
                     break
-                oeuvre = ajouter_ou_trouver_oeuvre()
+                oeuvre = ajouter_ou_trouver_oeuvre(artistes, oeuvres)
                 if oeuvre:
                     collection.ajouter_oeuvre(oeuvre)
             print(collection)
@@ -130,4 +76,5 @@ def main():
             else:
                 print("Collection non trouvée.")
 
-main()
+if __name__ == "__main__":
+    main()
