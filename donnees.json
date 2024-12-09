@@ -9,10 +9,13 @@
     ],
     "oeuvres": [
         {
-            "titre": "La Nuit étoilée",
-            "description": "Une célèbre peinture représentant une nuit étoilée.",
-            "artiste": "Vincent van Gogh"
+            "titre": "La Nuit Étoilée",
+            "description": "Un chef-d'œuvre de Van Gogh représentant un ciel étoilé.",
+            "artiste": "Vincent Van Gogh",
+            "couleur_dominante": "Bleu",
+            "courant": "Post-impressionnisme"
         }
+
     ],
     "collections": [
         {
