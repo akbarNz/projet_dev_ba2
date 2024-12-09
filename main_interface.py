@@ -32,12 +32,21 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
 
     if input("Oeuvre non trouvée. Voulez-vous la créer ? (oui/non): ").lower() == "oui":
         description = input("Description de l'œuvre: ")
+        couleur_dominante = input("Couleur dominante: ")
+        courant = input("Courant artistique: ")
         artiste = creer_ou_trouver_artiste(artistes)
         if artiste:
-            oeuvre = Oeuvre(titre, description, artiste)
+            oeuvre = Oeuvre(
+                titre=titre,
+                description=description,
+                artiste=artiste,
+                couleur_dominante=couleur_dominante,
+                courant=courant
+            )
             oeuvres.append(oeuvre)
             return oeuvre
     return None
+
 
 
 def gerer_collection(artistes, oeuvres, collections):
