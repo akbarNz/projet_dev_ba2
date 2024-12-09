@@ -50,19 +50,34 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
 
 
 def gerer_collection(artistes, oeuvres, collections):
-    nom_collection = input("Nom de la collection à créer ou afficher: ")
+    while True:
+        nom_collection = input("Nom de la collection à créer ou afficher : ").strip()
+        if nom_collection:
+            break
+        print("Le nom de la collection ne peut pas être vide. Veuillez réessayer.")
+
     collection = next((c for c in collections if c.nom.lower() == nom_collection.lower()), None)
     if not collection:
         collection = Collection(nom_collection)
         collections.append(collection)
+        print(f"Nouvelle collection créée : {nom_collection}")
+    else:
+        print(f"Collection existante trouvée : {nom_collection}")
 
     while True:
-        ajout = input("Voulez-vous ajouter une œuvre à cette collection ? (oui/non): ")
-        if ajout.lower() == 'non':
+        ajout = input("Voulez-vous ajouter une œuvre à cette collection ? (oui/non) : ").strip().lower()
+        if ajout not in ['oui', 'non']:
+            print("Veuillez répondre par 'oui' ou 'non'.")
+            continue
+        if ajout == 'non':
             break
+
         oeuvre = ajouter_ou_trouver_oeuvre(artistes, oeuvres)
         if oeuvre:
             collection.ajouter_oeuvre(oeuvre)
+            print(f"L'œuvre '{oeuvre.titre}' a été ajoutée à la collection '{nom_collection}'.")
+
+    print("Résumé de la collection :")
     print(collection)
 
 
