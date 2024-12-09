@@ -1,6 +1,6 @@
-# art_management.py
-
 from datetime import datetime
+import json
+
 
 class Artiste:
     def __init__(self, identite, biographie, date_naissance, date_deces=None):
@@ -8,23 +8,49 @@ class Artiste:
         self.biographie = biographie
         self.date_naissance = convertir_date(date_naissance)
         self.date_deces = convertir_date(date_deces) if date_deces else None
-        self.oeuvres = []
+
     def __str__(self):
         return f"Artiste: {self.identite}, Bio: {self.biographie}"
 
+    def to_dict(self):
+        return {
+            "identite": self.identite,
+            "biographie": self.biographie,
+            "date_naissance": self.date_naissance.strftime("%Y-%m-%d") if self.date_naissance else None,
+            "date_deces": self.date_deces.strftime("%Y-%m-%d") if self.date_deces else None
+        }
+
+    @staticmethod
+    def from_dict(data):
+        return Artiste(
+            data["identite"],
+            data["biographie"],
+            data["date_naissance"],
+            data["date_deces"]
+        )
+
 
 class Oeuvre:
-    def __init__(self, titre, description, couleur_dominante,artiste=None):
+    def __init__(self, titre, description, artiste=None):
         self.titre = titre
         self.description = description
         self.artiste = artiste
-        if artiste:
-            artiste.oeuvre.append(self.titre)
-        self.couleur_dominante = couleur_dominante
 
     def __str__(self):
         artiste_info = self.artiste.identite if self.artiste else "Inconnu"
-        return f"Oeuvre: {self.titre}, Artiste: {artiste_info}, Description: {self.description}, Couleur Dominante: {self.couleur_dominante}"
+        return f"Oeuvre: {self.titre}, Artiste: {artiste_info}, Description: {self.description}"
+
+    def to_dict(self):
+        return {
+            "titre": self.titre,
+            "description": self.description,
+            "artiste": self.artiste.identite if self.artiste else None
+        }
+
+    @staticmethod
+    def from_dict(data, artistes):
+        artiste = next((a for a in artistes if a.identite == data["artiste"]), None)
+        return Oeuvre(data["titre"], data["description"], artiste)
 
 
 class Collection:
@@ -32,41 +58,62 @@ class Collection:
         self.nom = nom
         self.oeuvres = []
 
-        def ajouter_oeuvre(self, oeuvre):
+    def ajouter_oeuvre(self, oeuvre):
+        if oeuvre not in self.oeuvres:
             self.oeuvres.append(oeuvre)
-
 
     def __str__(self):
         oeuvres_titres = ', '.join([oeuvre.titre for oeuvre in self.oeuvres])
         return f"Collection: {self.nom} avec les œuvres: [{oeuvres_titres}]"
 
+    def to_dict(self):
+        return {
+            "nom": self.nom,
+            "oeuvres": [oeuvre.titre for oeuvre in self.oeuvres]
+        }
 
-class Exposition:
-    def __init__(self, nom, date_debut, date_fin, collection):
-        self.nom = nom
-        self.date_debut = date_debut
-        self.date_fin = date_fin
-        self.collection = collection
+    @staticmethod
+    def from_dict(data, oeuvres):
+        collection = Collection(data["nom"])
+        for titre in data["oeuvres"]:
+            oeuvre = next((o for o in oeuvres if o.titre == titre), None)
+            if oeuvre:
+                collection.ajouter_oeuvre(oeuvre)
+        return collection
 
-    def __str__(self):
-        return f"Exposition: {self.nom}, du {self.date_debut} au {self.date_fin}, Collection: {self.collection.nom}"
-
-# Fonctions utilitaires pour gérer la logique
-def trouver_artiste_par_nom(artistes, identite):
-    for artiste in artistes:
-        if artiste.identite.lower() == identite.lower():
-            return artiste
-    return None
-
-def trouver_oeuvre_par_titre(oeuvres, titre):
-    for oeuvre in oeuvres:
-        if oeuvre.titre.lower() == titre.lower():
-            return oeuvre
-    return None
 
 def convertir_date(date_str):
     try:
         return datetime.strptime(date_str, "%Y-%m-%d")
     except ValueError:
-        print("Format de date incorrect. Utilisez AAAA-MM-JJ.")
         return None
+
+
+def trouver_artiste_par_nom(artistes, identite):
+    return next((artiste for artiste in artistes if artiste.identite.lower() == identite.lower()), None)
+
+
+def trouver_oeuvre_par_titre(oeuvres, titre):
+    return next((oeuvre for oeuvre in oeuvres if oeuvre.titre.lower() == titre.lower()), None)
+
+
+def sauvegarder_donnees(fichier, artistes, oeuvres, collections):
+    data = {
+        "artistes": [artiste.to_dict() for artiste in artistes],
+        "oeuvres": [oeuvre.to_dict() for oeuvre in oeuvres],
+        "collections": [collection.to_dict() for collection in collections]
+    }
+    with open(fichier, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+
+def charger_donnees(fichier):
+    try:
+        with open(fichier, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            artistes = [Artiste.from_dict(a) for a in data["artistes"]]
+            oeuvres = [Oeuvre.from_dict(o, artistes) for o in data["oeuvres"]]
+            collections = [Collection.from_dict(c, oeuvres) for c in data["collections"]]
+            return artistes, oeuvres, collections
+    except FileNotFoundError:
+        return [], [], []
