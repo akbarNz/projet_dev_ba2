@@ -1,0 +1,23 @@
+{
+    "artistes": [
+        {
+            "identite": "Vincent van Gogh",
+            "biographie": "Un des plus grands peintres postimpressionnistes.",
+            "date_naissance": "1853-03-30",
+            "date_deces": "1890-07-29"
+        }
+    ],
+    "oeuvres": [
+        {
+            "titre": "La Nuit étoilée",
+            "description": "Une célèbre peinture représentant une nuit étoilée.",
+            "artiste": "Vincent van Gogh"
+        }
+    ],
+    "collections": [
+        {
+            "nom": "Impressionnisme",
+            "oeuvres": ["La Nuit étoilée"]
+        }
+    ]
+}
