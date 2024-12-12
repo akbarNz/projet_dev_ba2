@@ -95,10 +95,14 @@ class Collection:
 
 
 def convertir_date(date_str):
+    if not date_str:  # Vérifie si la chaîne est vide ou None
+        return None
     try:
         return datetime.strptime(date_str, "%Y-%m-%d")
     except ValueError:
+        print(f"Erreur : format de date invalide '{date_str}'. Attendu AAAA-MM-JJ.")
         return None
+
 
 
 def trouver_artiste_par_nom(artistes, identite):
@@ -122,10 +126,17 @@ def sauvegarder_donnees(fichier, artistes, oeuvres, collections):
 def charger_donnees(fichier):
     try:
         with open(fichier, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            artistes = [Artiste.from_dict(a) for a in data["artistes"]]
-            oeuvres = [Oeuvre.from_dict(o, artistes) for o in data["oeuvres"]]
-            collections = [Collection.from_dict(c, oeuvres) for c in data["collections"]]
+            contenu = f.read().strip()
+            if not contenu:
+                return [], [], []
+            data = json.loads(contenu)
+            artistes = [Artiste.from_dict(a) for a in data.get("artistes", [])]
+            oeuvres = [Oeuvre.from_dict(o, artistes) for o in data.get("oeuvres", [])]
+            collections = [Collection.from_dict(c, oeuvres) for c in data.get("collections", [])]
             return artistes, oeuvres, collections
     except FileNotFoundError:
         return [], [], []
+    except json.JSONDecodeError as e:
+        print(f"Erreur de lecture JSON : {e}")
+        return [], [], []
+
