@@ -6,17 +6,17 @@ from art_management import (
 
 
 def creer_ou_trouver_artiste(artistes):
-    identite = input("Entrez le nom complet de l'artiste (Prénom Nom): ")
+    identite = input("Entrez le nom complet de l'artiste (Prénom Nom): ").strip()
     artiste = trouver_artiste_par_nom(artistes, identite)
     if artiste:
         print(f"Artiste trouvé : {artiste}")
         return artiste
 
     print("Artiste non trouvé.")
-    if input("Voulez-vous créer cet artiste ? (oui/non): ").lower() == "oui":
-        bio = input("Biographie: ")
-        date_naissance = input("Date de naissance (AAAA-MM-JJ): ")
-        date_deces = input("Date de décès (si applicable, sinon laisser vide): ") or None
+    if input("Voulez-vous créer cet artiste ? (oui/non): ").strip().lower() == "oui":
+        bio = input("Biographie: ").strip()
+        date_naissance = input("Date de naissance (AAAA-MM-JJ): ").strip()
+        date_deces = input("Date de décès (si applicable, sinon laisser vide): ").strip() or None
         artiste = Artiste(identite, bio, date_naissance, date_deces)
         artistes.append(artiste)
         return artiste
@@ -24,16 +24,16 @@ def creer_ou_trouver_artiste(artistes):
 
 
 def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
-    titre = input("Entrez le titre de l'œuvre à rechercher ou créer: ")
+    titre = input("Entrez le titre de l'œuvre à rechercher ou créer: ").strip()
     oeuvre = trouver_oeuvre_par_titre(oeuvres, titre)
     if oeuvre:
-        print(f"Oeuvre trouvée : {oeuvre}")
+        print(f"Œuvre trouvée : {oeuvre}")
         return oeuvre
 
-    if input("Oeuvre non trouvée. Voulez-vous la créer ? (oui/non): ").lower() == "oui":
-        description = input("Description de l'œuvre: ")
-        couleur_dominante = input("Couleur dominante: ")
-        courant = input("Courant artistique: ")
+    if input("Œuvre non trouvée. Voulez-vous la créer ? (oui/non): ").strip().lower() == "oui":
+        description = input("Description de l'œuvre: ").strip()
+        couleur_dominante = input("Couleur dominante: ").strip()
+        courant = input("Courant artistique: ").strip()
         artiste = creer_ou_trouver_artiste(artistes)
         if artiste:
             oeuvre = Oeuvre(
@@ -46,7 +46,6 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
             oeuvres.append(oeuvre)
             return oeuvre
     return None
-
 
 
 def gerer_collection(artistes, oeuvres, collections):
@@ -86,14 +85,14 @@ def main():
     artistes, oeuvres, collections = charger_donnees(fichier_donnees)
 
     while True:
-        choix = input("Voulez-vous gérer un 'artiste', une 'œuvre', une 'collection' ou 'quitter' ? ")
-        if choix.lower() == 'quitter':
+        choix = input("Voulez-vous gérer un 'artiste', une 'œuvre', une 'collection' ou 'quitter' ? ").strip().lower()
+        if choix == 'quitter':
             break
-        elif choix.lower() == 'artiste':
+        elif choix == 'artiste':
             creer_ou_trouver_artiste(artistes)
-        elif choix.lower() == 'œuvre':
+        elif choix == 'œuvre':
             ajouter_ou_trouver_oeuvre(artistes, oeuvres)
-        elif choix.lower() == 'collection':
+        elif choix == 'collection':
             gerer_collection(artistes, oeuvres, collections)
 
     sauvegarder_donnees(fichier_donnees, artistes, oeuvres, collections)
