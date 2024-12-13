@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" version="24.8.2">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0" version="25.0.1">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="2448" dy="414" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -124,19 +124,19 @@
             <mxPoint x="736" y="381" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="feHXkfgUiGf7qHUnP2GY-0" value="ListArtistes" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="-960" y="594" width="555" height="114" as="geometry" />
+        <mxCell id="feHXkfgUiGf7qHUnP2GY-0" value="ListArtistes" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-960" y="594" width="555" height="157" as="geometry" />
         </mxCell>
-        <mxCell id="feHXkfgUiGf7qHUnP2GY-1" value="+ list_artiste: list[Artiste]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="feHXkfgUiGf7qHUnP2GY-0">
+        <mxCell id="feHXkfgUiGf7qHUnP2GY-1" value="+ list_artiste: list[Artiste]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="feHXkfgUiGf7qHUnP2GY-0" vertex="1">
           <mxGeometry y="26" width="555" height="19" as="geometry" />
         </mxCell>
-        <mxCell id="feHXkfgUiGf7qHUnP2GY-2" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="feHXkfgUiGf7qHUnP2GY-0">
+        <mxCell id="feHXkfgUiGf7qHUnP2GY-2" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="feHXkfgUiGf7qHUnP2GY-0" vertex="1">
           <mxGeometry y="45" width="555" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="feHXkfgUiGf7qHUnP2GY-3" value="&lt;div&gt;+ constructeur(): Void&lt;/div&gt;&lt;div&gt;+ ajouter_artiste(artiste: Artiste): Void&lt;/div&gt;&lt;div&gt;+ chercher_artiste(nom : string, prenom : string) : Artiste ou Null&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="feHXkfgUiGf7qHUnP2GY-0">
-          <mxGeometry y="53" width="555" height="61" as="geometry" />
+        <mxCell id="feHXkfgUiGf7qHUnP2GY-3" value="&lt;div&gt;+ constructeur(): Void&lt;/div&gt;&lt;div&gt;+ ajouter_artiste(identite, bio: String, date_naiss: String, date_deces: String default=Null): Void&lt;/div&gt;&lt;div&gt;+ chercher_artiste(identite: string) : Artiste ou Null&lt;/div&gt;&lt;div&gt;+ est_dans_liste_artistes(identite: String) : Boleen&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="feHXkfgUiGf7qHUnP2GY-0" vertex="1">
+          <mxGeometry y="53" width="555" height="104" as="geometry" />
         </mxCell>
-        <mxCell id="feHXkfgUiGf7qHUnP2GY-4" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=1.038;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="I2Vo8YAyR-l4Du6Dh9Zq-1" target="feHXkfgUiGf7qHUnP2GY-0">
+        <mxCell id="feHXkfgUiGf7qHUnP2GY-4" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=1.038;exitDx=0;exitDy=0;exitPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="I2Vo8YAyR-l4Du6Dh9Zq-1" target="feHXkfgUiGf7qHUnP2GY-0" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="-455" y="247" as="sourcePoint" />
             <mxPoint x="-450" y="407" as="targetPoint" />
@@ -145,7 +145,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="feHXkfgUiGf7qHUnP2GY-5" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;ListArtistes&lt;/h1&gt;&lt;p&gt;une liste de tout les artistes ayant des oeuvres dans la collection.&lt;br&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="feHXkfgUiGf7qHUnP2GY-5" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;ListArtistes&lt;/h1&gt;&lt;p&gt;une liste de tout les artistes ayant des oeuvres dans la collection.&lt;br&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-380" y="692" width="180" height="120" as="geometry" />
         </mxCell>
       </root>
