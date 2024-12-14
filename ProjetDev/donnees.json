@@ -17,13 +17,19 @@
             "biographie": "TEST2",
             "date_naissance": "123-12-12",
             "date_deces": null
+        },
+        {
+            "identite": "Le test pour rajouter un artiste a une oeuvre qui n en a pas fonctionne",
+            "biographie": "artiste de la nuit etoile",
+            "date_naissance": "1010/10/10",
+            "date_deces": "1110/10/10"
         }
     ],
     "oeuvres": [
         {
             "titre": "La Nuit Étoilée",
             "description": "Un chef-d'œuvre de Van Gogh représentant un ciel étoilé.",
-            "artiste": null,
+            "artiste": "Le test pour rajouter un artiste a une oeuvre qui n en a pas fonctionne",
             "couleur_dominante": "Bleu",
             "courant": "Post-impressionnisme"
         }

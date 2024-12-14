@@ -24,6 +24,13 @@ class Oeuvre:
             "courant": self.courant
         }
     
+    def assigner_artiste(self, artiste):
+        if self.artiste is None:
+            self.artiste = artiste
+            print(f"Artiste '{artiste.identite}' assigné à l'œuvre '{self.titre}'.")
+        else:
+            print(f"L'œuvre '{self.titre}' a déjà un artiste assigné : {self.artiste.identite}.")
+
 
     @staticmethod
     def from_dict(data, artistes):

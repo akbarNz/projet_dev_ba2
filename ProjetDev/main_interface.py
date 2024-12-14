@@ -45,9 +45,14 @@ def creer_ou_trouver_artiste(artistes):
 
 def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
     titre = input("Entrez le titre de l'œuvre à rechercher ou créer: ").strip()
-    oeuvre = trouver_oeuvre_par_titre(oeuvres, titre)    
+    oeuvre = trouver_oeuvre_par_titre(oeuvres, titre)
     if oeuvre:
         print(f"Œuvre trouvée : {oeuvre}")
+        if oeuvre.artiste is None:
+            if input("Cette œuvre n'a pas d'artiste assigné. Voulez-vous en ajouter un ? (oui/non) : ").strip().lower() == "oui":
+                artiste = creer_ou_trouver_artiste(artistes)
+                if artiste:
+                    oeuvre.assigner_artiste(artiste)
         return oeuvre
 
     if input("Œuvre non trouvée. Voulez-vous la créer ? (oui/non): ").strip().lower() == "oui":
@@ -66,7 +71,6 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
             oeuvres.append(oeuvre)
             return oeuvre
     return None
-
 
 def gerer_collection(artistes, oeuvres, collections):
     while True:
