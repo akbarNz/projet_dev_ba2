@@ -1,23 +1,24 @@
-from datetime import datetime
 import json
+import re
 
 
 class Artiste:
     def __init__(self, identite, biographie, date_naissance, date_deces=None):
         self.identite = identite
         self.biographie = biographie
-        self.date_naissance = convertir_date(date_naissance)
-        self.date_deces = convertir_date(date_deces) if date_deces else None
+        self.date_naissance = date_naissance  # Stockée comme chaîne
+        self.date_deces = date_deces          # Stockée comme chaîne
 
     def __str__(self):
-        return f"Artiste: {self.identite}, Bio: {self.biographie}"
+        return (f"Artiste: {self.identite}, Biographie: {self.biographie}, "
+                f"Date de naissance: {self.date_naissance}, Date de décès: {self.date_deces or 'N/A'}")
 
     def to_dict(self):
         return {
             "identite": self.identite,
             "biographie": self.biographie,
-            "date_naissance": self.date_naissance.strftime("%Y-%m-%d") if self.date_naissance else None,
-            "date_deces": self.date_deces.strftime("%Y-%m-%d") if self.date_deces else None
+            "date_naissance": self.date_naissance,
+            "date_deces": self.date_deces
         }
 
     @staticmethod
@@ -26,7 +27,7 @@ class Artiste:
             data["identite"],
             data["biographie"],
             data["date_naissance"],
-            data["date_deces"]
+            data.get("date_deces")
         )
 
 
@@ -64,7 +65,6 @@ class Oeuvre:
         )
 
 
-
 class Collection:
     def __init__(self, nom):
         self.nom = nom
@@ -94,15 +94,28 @@ class Collection:
         return collection
 
 
-def convertir_date(date_str):
-    if not date_str:  # Vérifie si la chaîne est vide ou None
-        return None
-    try:
-        return datetime.strptime(date_str, "%Y-%m-%d")
-    except ValueError:
-        print(f"Erreur : format de date invalide '{date_str}'. Attendu AAAA-MM-JJ.")
-        return None
+def valider_format_date(date_str):
+    """Valide et conserve la date au format original, sans ajouter de zéros."""
+    if not date_str:
+        return True, None
 
+    # Expression régulière pour vérifier le format (année, mois et jour peuvent avoir 1 à 4 chiffres)
+    match = re.match(r"(\d{1,4})-(\d{1,2})-(\d{1,2})$", date_str)
+    if not match:
+        return False, None
+
+    # Récupération des parties de la date
+    annee, mois, jour = match.groups()
+
+    # Vérification que les valeurs sont valides (année de 1 à 9999, mois de 1 à 12, jour de 1 à 31)
+    if not (1 <= int(annee) <= 9999):
+        return False, None
+    if not (1 <= int(mois) <= 12):
+        return False, None
+    if not (1 <= int(jour) <= 31):  # Vous pouvez ajouter une validation plus stricte pour les jours si nécessaire
+        return False, None
+
+    return True, date_str  # Retourner la date d'origine si elle est valide
 
 
 def trouver_artiste_par_nom(artistes, identite):
@@ -139,4 +152,3 @@ def charger_donnees(fichier):
     except json.JSONDecodeError as e:
         print(f"Erreur de lecture JSON : {e}")
         return [], [], []
-
