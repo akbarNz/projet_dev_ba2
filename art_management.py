@@ -1,7 +1,6 @@
 import json
 import re
 
-#saaddd 
 
 class Artiste:
     def __init__(self, identite, biographie, date_naissance, date_deces=None):
