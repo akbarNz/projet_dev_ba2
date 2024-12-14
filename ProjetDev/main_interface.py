@@ -41,6 +41,38 @@ def creer_ou_trouver_artiste(artistes):
             return artiste
     return None
 
+def ajouter_oeuvres_multiples_a_collection(oeuvres, collection):
+    print("Choisissez un ou plusieurs critères pour ajouter des œuvres à la collection (séparez par des virgules):")
+    print("1. Artiste")
+    print("2. Courant artistique")
+    print("3. Couleur dominante")
+    choix_utilisateur = input("Votre choix (ex: 1, 2) : ").strip()
+
+    critere_mapping = {
+        '1': ('artiste', 'identite'),
+        '2': ('courant', 'courant'),
+        '3': ('couleur_dominante', 'couleur_dominante')
+    }
+    choixs = choix_utilisateur.split(',')
+    criteres = []
+
+    for choix in choixs:
+        choix = choix.strip()
+        if choix in critere_mapping:
+            nom_critere, attr = critere_mapping[choix]
+            valeur = input(f"Entrez {nom_critere} : ").strip()
+            criteres.append((attr, valeur.lower()))
+
+    oeuvres_a_ajouter = [oeuvre for oeuvre in oeuvres if all(getattr(oeuvre, attr, '').lower() == val for attr, val in criteres)]
+    
+    for oeuvre in oeuvres_a_ajouter:
+        collection.ajouter_oeuvre(oeuvre)
+        print(f"'{oeuvre.titre}' ajoutée à la collection '{collection.nom}'.")
+    if oeuvres_a_ajouter:
+        print(f"{len(oeuvres_a_ajouter)} œuvres ajoutées à la collection.")
+    else:
+        print("Aucune œuvre trouvée avec les critères spécifiés.")
+
 
 
 def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
@@ -72,36 +104,61 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
             return oeuvre
     return None
 
-def gerer_collection(artistes, oeuvres, collections):
-    while True:
-        nom_collection = input("Nom de la collection à créer ou afficher : ").strip()
-        if nom_collection:
-            break
-        print("Le nom de la collection ne peut pas être vide. Veuillez réessayer.")
+def afficher_collections_disponibles(collections):
+    if not collections:
+        print("Aucune collection disponible.")
+        return None
+    print("Collections disponibles :")
+    for idx, collection in enumerate(collections, start=1):
+        print(f"{idx}. {collection.nom}")
+    return collections
 
-    collection = next((c for c in collections if c.nom.lower() == nom_collection.lower()), None)
-    if not collection:
+def choisir_collection(collections):
+    collections = afficher_collections_disponibles(collections)
+    if not collections:
+        return None
+    choix = input("Choisissez une collection par numéro ou entrez le nom : ").strip().lower()
+    try:
+        # Permet de choisir par numéro, en supposant que l'utilisateur peut saisir un indice basé sur l'affichage précédent
+        return collections[int(choix) - 1]
+    except (ValueError, IndexError):
+        # Permet de choisir par nom si l'entrée n'est pas un nombre ou hors de l'index
+        return next((col for col in collections if col.nom.lower() == choix), None)
+
+def gerer_collection(artistes, oeuvres, collections):
+    choix_collection = input("Voulez-vous 'créer' une nouvelle collection ou 'utiliser' une collection existante ? (créer/utiliser) : ").strip().lower()
+    if choix_collection == 'creer' or choix_collection == 'créer':
+        nom_collection = input("Entrez le nom de la nouvelle collection : ").strip()
         collection = Collection(nom_collection)
         collections.append(collection)
         print(f"Nouvelle collection créée : {nom_collection}")
+    elif choix_collection == 'utiliser':
+        collection = choisir_collection(collections)
+        if not collection:
+            print("Collection non trouvée ou choix invalide.")
+            return
+        nom_collection = collection.nom  # Utiliser le nom de la collection existante
+        print(f"Utilisation de la collection existante : {nom_collection}")
     else:
-        print(f"Collection existante trouvée : {nom_collection}")
+        print("Choix invalide.")
+        return
 
     while True:
-        ajout = input("Voulez-vous ajouter une œuvre à cette collection ? (oui/non) : ").strip().lower()
-        if ajout not in ['oui', 'non']:
-            print("Veuillez répondre par 'oui' ou 'non'.")
+        action = input("Voulez-vous ajouter 'une' oeuvre ou 'plusieurs' oeuvres à la collection ? (une/plusieurs) : ").strip().lower()
+        if action == 'une':
+            oeuvre = ajouter_ou_trouver_oeuvre(artistes, oeuvres)
+            if oeuvre:
+                collection.ajouter_oeuvre(oeuvre)
+                print(f"L'oeuvre '{oeuvre.titre}' a été ajoutée à la collection '{nom_collection}'.")
+        elif action == 'plusieurs':
+            ajouter_oeuvres_multiples_a_collection(oeuvres, collection)
+        else:
+            print("Choix invalide. Veuillez choisir 'une' ou 'plusieurs'.")
             continue
-        if ajout == 'non':
+        
+        encore = input("Voulez-vous ajouter d'autres œuvres à cette collection ? (oui/non) : ").strip().lower()
+        if encore != 'oui':
             break
-
-        oeuvre = ajouter_ou_trouver_oeuvre(artistes, oeuvres)
-        if oeuvre:
-            collection.ajouter_oeuvre(oeuvre)
-            print(f"L'œuvre '{oeuvre.titre}' a été ajoutée à la collection '{nom_collection}'.")
-
-    print("Résumé de la collection :")
-    print(collection)
 
 
 def main():

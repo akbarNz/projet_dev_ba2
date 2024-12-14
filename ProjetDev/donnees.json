@@ -23,6 +23,12 @@
             "biographie": "artiste de la nuit etoile",
             "date_naissance": "1010/10/10",
             "date_deces": "1110/10/10"
+        },
+        {
+            "identite": "test3",
+            "biographie": "test3",
+            "date_naissance": "1010/10/10",
+            "date_deces": null
         }
     ],
     "oeuvres": [
@@ -32,12 +38,33 @@
             "artiste": "Le test pour rajouter un artiste a une oeuvre qui n en a pas fonctionne",
             "couleur_dominante": "Bleu",
             "courant": "Post-impressionnisme"
+        },
+        {
+            "titre": "Saad",
+            "description": "c est pour tester la collection",
+            "artiste": "test test",
+            "couleur_dominante": "rouge",
+            "courant": "bz"
+        },
+        {
+            "titre": "benja",
+            "description": "pour tester la collec encore",
+            "artiste": "test test",
+            "couleur_dominante": "bleu",
+            "courant": "bz"
         }
     ],
     "collections": [
         {
             "nom": "Impressionnisme",
             "oeuvres": []
+        },
+        {
+            "nom": "TestCollec",
+            "oeuvres": [
+                "Saad",
+                "benja"
+            ]
         }
     ]
 }
