@@ -5,22 +5,27 @@
             "biographie": "Un des plus grands peintres postimpressionnistes.",
             "date_naissance": "1853-03-30",
             "date_deces": "1890-07-29"
+        },
+        {
+            "identite": "test test",
+            "biographie": "c est un test",
+            "date_naissance": "789-12-3",
+            "date_deces": null
         }
     ],
     "oeuvres": [
         {
             "titre": "La Nuit Étoilée",
             "description": "Un chef-d'œuvre de Van Gogh représentant un ciel étoilé.",
-            "artiste": "Vincent Van Gogh",
+            "artiste": null,
             "couleur_dominante": "Bleu",
             "courant": "Post-impressionnisme"
         }
-
     ],
     "collections": [
         {
             "nom": "Impressionnisme",
-            "oeuvres": ["La Nuit étoilée"]
+            "oeuvres": []
         }
     ]
 }

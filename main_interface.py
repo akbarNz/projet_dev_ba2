@@ -1,8 +1,10 @@
-from art_management import (
+from Artiste import (
     charger_donnees, sauvegarder_donnees,
-    Artiste, Oeuvre, Collection,
+    Artiste,
     trouver_artiste_par_nom, trouver_oeuvre_par_titre, valider_format_date
 )
+from Oeuvre import Oeuvre
+from Collection import Collection
 
 
 def demander_date_str(message, obligatoire=False):
@@ -105,12 +107,12 @@ def main():
     artistes, oeuvres, collections = charger_donnees(fichier_donnees)
 
     while True:
-        choix = input("Voulez-vous gérer un 'artiste', une 'œuvre', une 'collection' ou 'quitter' ? ").strip().lower()
+        choix = input("Voulez-vous gérer un 'artiste', une 'oeuvre', une 'collection' ou 'quitter' ? ").strip().lower()
         if choix == 'quitter':
             break
         elif choix == 'artiste':
             creer_ou_trouver_artiste(artistes)
-        elif choix == 'œuvre':
+        elif choix == 'oeuvre':
             ajouter_ou_trouver_oeuvre(artistes, oeuvres)
         elif choix == 'collection':
             gerer_collection(artistes, oeuvres, collections)
