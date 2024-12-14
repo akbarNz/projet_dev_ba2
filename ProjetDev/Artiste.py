@@ -1,6 +1,6 @@
 import json
 import re
-from ProjetDev.Oeuvre import Oeuvre
+from Oeuvre import Oeuvre
 from Collection import Collection
 
 class Artiste:

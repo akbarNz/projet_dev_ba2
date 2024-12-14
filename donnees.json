@@ -1,0 +1,12 @@
+{
+    "artistes": [
+        {
+            "identite": "test2",
+            "biographie": "test2",
+            "date_naissance": "123/11/23",
+            "date_deces": null
+        }
+    ],
+    "oeuvres": [],
+    "collections": []
+}

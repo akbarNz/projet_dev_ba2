@@ -1,6 +1,6 @@
 import json
 import re
-from Artiste import Artiste
+
 
 class Oeuvre:
     def __init__(self, titre, description, artiste=None, couleur_dominante=None, courant=None):
@@ -23,6 +23,7 @@ class Oeuvre:
             "couleur_dominante": self.couleur_dominante,
             "courant": self.courant
         }
+    
 
     @staticmethod
     def from_dict(data, artistes):

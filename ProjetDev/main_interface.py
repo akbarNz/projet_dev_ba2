@@ -1,9 +1,7 @@
-from Artiste import (
-    charger_donnees, sauvegarder_donnees,
-    Artiste,
-    trouver_artiste_par_nom, trouver_oeuvre_par_titre, valider_format_date
+from Artiste import ( Artiste,
+    charger_donnees, sauvegarder_donnees,trouver_artiste_par_nom, trouver_oeuvre_par_titre, valider_format_date
 )
-from ProjetDev.Oeuvre import Oeuvre
+from Oeuvre import Oeuvre
 from Collection import Collection
 
 

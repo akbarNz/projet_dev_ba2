@@ -11,6 +11,12 @@
             "biographie": "c est un test",
             "date_naissance": "789-12-3",
             "date_deces": null
+        },
+        {
+            "identite": "test2 test",
+            "biographie": "TEST2",
+            "date_naissance": "123-12-12",
+            "date_deces": null
         }
     ],
     "oeuvres": [
