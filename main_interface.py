@@ -19,26 +19,28 @@ def demander_date_str(message, obligatoire=False):
 def creer_ou_trouver_artiste(artistes):
     identite = input("Entrez le nom complet de l'artiste (Prénom Nom): ").strip()
     artiste = trouver_artiste_par_nom(artistes, identite)
+    
     if artiste:
         print(f"Artiste trouvé : {artiste}")
+        action = input("Voulez-vous 'voir' l'artiste ou 'modifier' ses informations ? (voir/modifier): ").strip().lower()
+        if action == 'modifier':
+            biographie = input("Nouvelle biographie (laisser vide pour ne pas modifier): ").strip()
+            date_naissance = input("Nouvelle date de naissance (AAAA-MM-JJ, laisser vide pour ne pas modifier): ").strip()
+            date_deces = input("Nouvelle date de décès (AAAA-MM-JJ, laisser vide pour ne pas modifier): ").strip()
+            artiste.modifier(biographie, date_naissance, date_deces)
+            print(f"Artiste modifié : {artiste}")
         return artiste
-
-    print("Artiste non trouvé.")
-    if input("Voulez-vous créer cet artiste ? (oui/non): ").strip().lower() == "oui":
-        bio = input("Biographie: ").strip()
-        date_naissance = demander_date_str("Date de naissance (AAAA-MM-JJ): ", obligatoire=True)
-        date_deces = demander_date_str("Date de décès (si applicable, sinon laisser vide): ")
-
-        # Validation facultative pour les relations entre dates
-        if date_deces and date_deces <= date_naissance:
-            print("Erreur : la date de décès doit être postérieure à la date de naissance.")
-            return None
-
-        artiste = Artiste(identite, bio, date_naissance, date_deces)
-        artistes.append(artiste)
-        print(f"Nouvel artiste créé : {artiste}")
-        return artiste
+    else:
+        print("Artiste non trouvé.")
+        if input("Voulez-vous créer cet artiste ? (oui/non): ").strip().lower() == "oui":
+            bio = input("Biographie: ").strip()
+            date_naissance = input("Date de naissance (AAAA-MM-JJ): ").strip()
+            date_deces = input("Date de décès (si applicable, sinon laisser vide): ").strip() or None
+            artiste = Artiste(identite, bio, date_naissance, date_deces)
+            artistes.append(artiste)
+            return artiste
     return None
+
 
 
 def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
