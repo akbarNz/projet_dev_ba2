@@ -6,7 +6,6 @@ from art_management import (
 
 
 def demander_date_str(message, obligatoire=False):
-    """Demande une date au format AAAA-MM-JJ sans conversion en datetime."""
     while True:
         date_str = input(message).strip()
         if not date_str and not obligatoire:
@@ -24,6 +23,7 @@ def creer_ou_trouver_artiste(artistes):
         print(f"Artiste trouvé : {artiste}")
         action = input("Voulez-vous 'voir' l'artiste ou 'modifier' ses informations ? (voir/modifier): ").strip().lower()
         if action == 'modifier':
+            identite = input("Modifier nom et prénom (laisser vide pour ne pas modifier)").strip()
             biographie = input("Nouvelle biographie (laisser vide pour ne pas modifier): ").strip()
             date_naissance = input("Nouvelle date de naissance (AAAA-MM-JJ, laisser vide pour ne pas modifier): ").strip()
             date_deces = input("Nouvelle date de décès (AAAA-MM-JJ, laisser vide pour ne pas modifier): ").strip()
@@ -45,7 +45,7 @@ def creer_ou_trouver_artiste(artistes):
 
 def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
     titre = input("Entrez le titre de l'œuvre à rechercher ou créer: ").strip()
-    oeuvre = trouver_oeuvre_par_titre(oeuvres, titre)
+    oeuvre = trouver_oeuvre_par_titre(oeuvres, titre)    
     if oeuvre:
         print(f"Œuvre trouvée : {oeuvre}")
         return oeuvre
