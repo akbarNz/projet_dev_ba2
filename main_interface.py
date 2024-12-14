@@ -1,8 +1,19 @@
 from art_management import (
     charger_donnees, sauvegarder_donnees,
     Artiste, Oeuvre, Collection,
-    trouver_artiste_par_nom, trouver_oeuvre_par_titre
+    trouver_artiste_par_nom, trouver_oeuvre_par_titre, valider_format_date
 )
+
+
+def demander_date_str(message, obligatoire=False):
+    """Demande une date au format AAAA-MM-JJ sans conversion en datetime."""
+    while True:
+        date_str = input(message).strip()
+        if not date_str and not obligatoire:
+            return None
+        if valider_format_date(date_str):
+            return date_str
+        print("Format de date invalide. Veuillez utiliser le format AAAA-MM-JJ.")
 
 
 def creer_ou_trouver_artiste(artistes):
@@ -15,10 +26,17 @@ def creer_ou_trouver_artiste(artistes):
     print("Artiste non trouvé.")
     if input("Voulez-vous créer cet artiste ? (oui/non): ").strip().lower() == "oui":
         bio = input("Biographie: ").strip()
-        date_naissance = input("Date de naissance (AAAA-MM-JJ): ").strip()
-        date_deces = input("Date de décès (si applicable, sinon laisser vide): ").strip() or None
+        date_naissance = demander_date_str("Date de naissance (AAAA-MM-JJ): ", obligatoire=True)
+        date_deces = demander_date_str("Date de décès (si applicable, sinon laisser vide): ")
+
+        # Validation facultative pour les relations entre dates
+        if date_deces and date_deces <= date_naissance:
+            print("Erreur : la date de décès doit être postérieure à la date de naissance.")
+            return None
+
         artiste = Artiste(identite, bio, date_naissance, date_deces)
         artistes.append(artiste)
+        print(f"Nouvel artiste créé : {artiste}")
         return artiste
     return None
 
