@@ -1,6 +1,6 @@
 import json
 import re
-from Oeuvre import Oeuvre
+from ProjetDev.Oeuvre import Oeuvre
 
 class Collection:
     def __init__(self, nom):
