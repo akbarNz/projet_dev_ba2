@@ -30,6 +30,15 @@ class Artiste:
             data.get("date_deces")
         )
 
+    def modifier(self, biographie=None, date_naissance=None, date_deces=None):
+        """Permet de modifier les informations de l'artiste."""
+        if biographie:
+            self.biographie = biographie
+        if date_naissance:
+            self.date_naissance = date_naissance
+        if date_deces:
+            self.date_deces = date_deces
+
 
 class Oeuvre:
     def __init__(self, titre, description, artiste=None, couleur_dominante=None, courant=None):
