@@ -6,8 +6,8 @@ class Artiste:
     def __init__(self, identite, biographie, date_naissance, date_deces=None):
         self.identite = identite
         self.biographie = biographie
-        self.date_naissance = date_naissance  # Stockée comme chaîne
-        self.date_deces = date_deces          # Stockée comme chaîne
+        self.date_naissance = date_naissance
+        self.date_deces = date_deces
 
     def __str__(self):
         return (f"Artiste: {self.identite}, Biographie: {self.biographie}, "
@@ -30,8 +30,9 @@ class Artiste:
             data.get("date_deces")
         )
 
-    def modifier(self, biographie=None, date_naissance=None, date_deces=None):
-        """Permet de modifier les informations de l'artiste."""
+    def modifier(self, identite=None, biographie=None, date_naissance=None, date_deces=None):
+        if identite:
+            self.identite = identite
         if biographie:
             self.biographie = biographie
         if date_naissance:
@@ -108,23 +109,20 @@ def valider_format_date(date_str):
     if not date_str:
         return True, None
 
-    # Expression régulière pour vérifier le format (année, mois et jour peuvent avoir 1 à 4 chiffres)
     match = re.match(r"(\d{1,4})-(\d{1,2})-(\d{1,2})$", date_str)
     if not match:
         return False, None
 
-    # Récupération des parties de la date
     annee, mois, jour = match.groups()
 
-    # Vérification que les valeurs sont valides (année de 1 à 9999, mois de 1 à 12, jour de 1 à 31)
     if not (1 <= int(annee) <= 9999):
         return False, None
     if not (1 <= int(mois) <= 12):
         return False, None
-    if not (1 <= int(jour) <= 31):  # Vous pouvez ajouter une validation plus stricte pour les jours si nécessaire
+    if not (1 <= int(jour) <= 31):
         return False, None
 
-    return True, date_str  # Retourner la date d'origine si elle est valide
+    return True, date_str
 
 
 def trouver_artiste_par_nom(artistes, identite):
