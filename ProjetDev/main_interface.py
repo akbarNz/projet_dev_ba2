@@ -1,9 +1,7 @@
-from Artiste import ( Artiste,
-    charger_donnees, sauvegarder_donnees,trouver_artiste_par_nom, trouver_oeuvre_par_titre, valider_format_date
-)
-from Oeuvre import Oeuvre
-from Collection import Collection
-from Exposition import Exposition
+from Artiste import *
+from Oeuvre import *
+from Collection import *
+from Exposition import *
 
 def demander_date_str(message, obligatoire=False):
     while True:

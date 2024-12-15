@@ -115,6 +115,13 @@
             "artiste": null,
             "couleur_dominante": "test",
             "courant": "test"
+        },
+        {
+            "titre": "tes",
+            "description": "tes",
+            "artiste": null,
+            "couleur_dominante": "tes",
+            "courant": "tes"
         }
     ],
     "collections": [
