@@ -64,9 +64,8 @@ def valider_format_date(date_str):
     return True, date_str
 
 
-def trouver_artiste_par_nom(artistes, identite):
-    return next((artiste for artiste in artistes if artiste.identite.lower() == identite.lower()), None)
-
+def trouver_artiste_par_nom(artistes, nom):
+    return next((artiste for artiste in artistes if artiste.identite.lower() == nom.lower()), None)
 
 def trouver_oeuvre_par_titre(oeuvres, titre):
     return next((oeuvre for oeuvre in oeuvres if oeuvre.titre.lower() == titre.lower()), None)
@@ -99,4 +98,3 @@ def charger_donnees(fichier):
     except json.JSONDecodeError as e:
         print(f"Erreur de lecture JSON : {e}")
         return [], [], [], []
-

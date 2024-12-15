@@ -63,9 +63,37 @@
         {
             "titre": "benjaverif",
             "description": "verif oeuvre",
-            "artiste": null,
+            "artiste": "Vincent van Gogh",
             "couleur_dominante": "green",
             "courant": "amour"
+        },
+        {
+            "titre": "correctionSaad",
+            "description": "bisous",
+            "artiste": "test test",
+            "couleur_dominante": "d",
+            "courant": "jsp"
+        },
+        {
+            "titre": "Correction2SaadOeuvre",
+            "description": "rien",
+            "artiste": "test test",
+            "couleur_dominante": "rien",
+            "courant": "rien"
+        },
+        {
+            "titre": "correctionSaad2Oeuvre",
+            "description": "rien2",
+            "artiste": "test2 test",
+            "couleur_dominante": "rien2",
+            "courant": "rien2"
+        },
+        {
+            "titre": "correctionSaad3",
+            "description": "rien3",
+            "artiste": "test3",
+            "couleur_dominante": "rieN3",
+            "courant": "rien3"
         }
     ],
     "collections": [
@@ -88,6 +116,12 @@
             "nom": "couleur dominante",
             "oeuvres": [
                 "benjaverif"
+            ]
+        },
+        {
+            "nom": "Correction2Saad",
+            "oeuvres": [
+                "Correction2SaadOeuvre"
             ]
         }
     ],
