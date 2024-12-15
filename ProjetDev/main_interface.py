@@ -23,14 +23,15 @@ def creer_ou_trouver_artiste(artistes):
     if artiste:
         print(f"Artiste trouvé : {artiste}")
         action = input("Voulez-vous 'voir' l'artiste ou 'modifier' ses informations ? (voir/modifier) : ").strip().lower()
-        if action == 'modifier':
-            identite = input("Modifier nom et prénom (laisser vide pour ne pas modifier) : ").strip()
-            biographie = input("Nouvelle biographie (laisser vide pour ne pas modifier) : ").strip()
-            date_naissance = input("Nouvelle date de naissance (AAAA-MM-JJ, laisser vide pour ne pas modifier) : ").strip()
-            date_deces = input("Nouvelle date de décès (AAAA-MM-JJ, laisser vide pour ne pas modifier) : ").strip()
-            artiste.modifier(biographie, date_naissance, date_deces)
+        if action == 'voir':
+            print(artiste)  # Afficher les détails de l'artiste, assurez-vous que la méthode __str__ ou similaire est définie
+        elif action == 'modifier':
+            identite = input("Modifier nom et prénom (laisser vide pour ne pas modifier): ").strip()
+            biographie = input("Nouvelle biographie (laisser vide pour ne pas modifier): ").strip()
+            date_naissance = input("Nouvelle date de naissance (AAAA-MM-JJ, laisser vide pour ne pas modifier): ").strip()
+            date_deces = input("Nouvelle date de décès (AAAA-MM-JJ, laisser vide pour ne pas modifier): ").strip()
+            artiste.modifier(biographie, date_naissance, date_deces)  # Assurez-vous que la méthode modifier gère correctement les entrées vides
             print(f"Artiste modifié : {artiste}")
-        return artiste
     else:
         print("Artiste non trouvé.")
         if input("Voulez-vous créer cet artiste ? (oui/non) : ").strip().lower() == "oui":
@@ -45,33 +46,51 @@ def creer_ou_trouver_artiste(artistes):
 
 
 def ajouter_oeuvres_multiples_a_collection(oeuvres, collection):
-    print("Choisissez un critère pour ajouter des œuvres à la collection :")
+    print("Choisissez un ou plusieurs critères pour ajouter des œuvres à la collection (séparez par des virgules) :")
     print("1. Artiste")
     print("2. Courant artistique")
     print("3. Couleur dominante")
-    choix = input("Votre choix (ex: 1, 2, 3) : ").strip()
+    choix_utilisateur = input("Votre choix (ex: 1, 2, 3) : ").strip()
 
-    if choix == '1' or choix == 'artiste' or choix == 'Artiste':
-        artiste_recherche = input("Entrez le nom de l'artiste : ").strip().lower()  # Utilisez .lower() pour la comparaison insensible à la casse
-        oeuvres_a_ajouter = [o for o in oeuvres if o.artiste and o.artiste.identite.lower() == artiste_recherche]
-    elif choix == '2' or choix == 'courant artistique' or choix == 'Courant artistique':
-        courant_recherche = input("Entrez le courant artistique : ").strip().lower()
-        oeuvres_a_ajouter = [o for o in oeuvres if o.courant.lower() == courant_recherche]
-    elif choix == '3'or choix == 'couleur dominante' or choix == 'Couleur dominante':
-        couleur_recherche = input("Entrez la couleur dominante : ").strip().lower()
-        oeuvres_a_ajouter = [o for o in oeuvres if o.couleur_dominante.lower() == couleur_recherche]
-    else:
-        print("Choix invalide.")
-        return
+    oeuvres_a_ajouter = []
+    critere = None
 
-    if oeuvres_a_ajouter:
-        for oeuvre in oeuvres_a_ajouter:
+    # Gestion des critères multiples
+    choixs = choix_utilisateur.split(',')
+    for choix in choixs:
+        choix = choix.strip()
+        if choix == '1' or choix.lower() == 'artiste':
+            critere = input("Entrez le nom de l'artiste : ").strip().lower()
+            oeuvres_a_ajouter.extend([o for o in oeuvres if o.artiste and o.artiste.identite.lower() == critere])
+        elif choix == '2' or choix.lower() == 'courant artistique':
+            critere = input("Entrez le courant artistique : ").strip().lower()
+            oeuvres_a_ajouter.extend([o for o in oeuvres if o.courant.lower() == critere])
+        elif choix == '3' or choix.lower() == 'couleur dominante':
+            critere = input("Entrez la couleur dominante : ").strip().lower()
+            oeuvres_a_ajouter.extend([o for o in oeuvres if o.couleur_dominante.lower() == critere])
+        else:
+            print("Choix invalide.")
+            return
+
+    # Filtrer les œuvres pour éviter les doublons dans les ajouts multiples
+    oeuvres_a_ajouter = list(set(oeuvres_a_ajouter))
+
+    oeuvres_deja_presentes = [o for o in oeuvres_a_ajouter if o in collection.oeuvres]
+    oeuvres_nouvelles = [o for o in oeuvres_a_ajouter if o not in collection.oeuvres]
+
+    if oeuvres_deja_presentes:
+        print(f"Les œuvres suivantes sont déjà présentes dans la collection '{collection.nom}':")
+        for oeuvre in oeuvres_deja_presentes:
+            print(f"- {oeuvre.titre}")
+
+    if oeuvres_nouvelles:
+        for oeuvre in oeuvres_nouvelles:
             collection.ajouter_oeuvre(oeuvre)
-            print(f"'{oeuvre.titre}' ajoutée à la collection '{collection.nom}'.")
-        print(f"{len(oeuvres_a_ajouter)} œuvres ajoutées à la collection.")
+            print(f"'{oeuvre.titre}' a été ajoutée à la collection '{collection.nom}'.")
+        print(f"{len(oeuvres_nouvelles)} œuvre(s) ajoutée(s) à la collection.")
     else:
-        print("Aucune œuvre trouvée avec les critères spécifiés.")
-
+        if not oeuvres_deja_presentes:
+            print("Aucune nouvelle œuvre à ajouter selon les critères spécifiés.")
 
 
 def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
@@ -83,7 +102,8 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
             if input("Cette œuvre n'a pas d'artiste assigné. Voulez-vous en ajouter un ? (oui/non) : ").strip().lower() == "oui":
                 artiste = creer_ou_trouver_artiste(artistes)
                 if artiste:
-                    oeuvre.assigner_artiste(artiste)
+                    oeuvre.assigner_artiste(artiste)  # S'assurer que cette méthode est bien définie dans la classe Oeuvre.
+                    print(f"L'artiste '{artiste.identite}' a été assigné à l'œuvre '{oeuvre.titre}'.")
         return oeuvre
 
     if input("Œuvre non trouvée. Voulez-vous la créer ? (oui/non): ").strip().lower() == "oui":
@@ -91,9 +111,8 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
         couleur_dominante = input("Couleur dominante: ").strip()
         courant = input("Courant artistique: ").strip()
         choix_artiste = input("Artiste connu ? (oui/non): ")
-        if choix_artiste == "non":
-            artiste = None 
-        else:    
+        artiste = None
+        if choix_artiste.lower() == 'oui':
             artiste = creer_ou_trouver_artiste(artistes)
         oeuvre = Oeuvre(
             titre=titre,
@@ -103,6 +122,7 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
             courant=courant
         )
         oeuvres.append(oeuvre)
+        print(f"Nouvelle œuvre créée : {oeuvre}")
         return oeuvre
     return None
 
@@ -135,7 +155,7 @@ def gerer_collection(artistes, oeuvres, collections):
         collections.append(collection)
         print(f"Nouvelle collection créée : {nom_collection}")
     elif choix_collection == 'utiliser':
-        collection = choisir_collection(collections)
+        collection = choisir_collection(collections) 
         if not collection:
             print("Collection non trouvée ou choix invalide.")
             return

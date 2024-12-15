@@ -15,6 +15,8 @@ class Oeuvre:
         return (f"Oeuvre: {self.titre}, Artiste: {artiste_info}, Description: {self.description}, "
                 f"Couleur Dominante: {self.couleur_dominante}, Courant: {self.courant}")
 
+    def assigner_artiste(self, artiste):
+        self.artiste = artiste
     def to_dict(self):
         return {
             "titre": self.titre,

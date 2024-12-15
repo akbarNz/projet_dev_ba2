@@ -94,6 +94,27 @@
             "artiste": "test3",
             "couleur_dominante": "rieN3",
             "courant": "rien3"
+        },
+        {
+            "titre": "saadCorrection8",
+            "description": "rien8",
+            "artiste": "test test",
+            "couleur_dominante": "rien8",
+            "courant": "rien8"
+        },
+        {
+            "titre": "FINALTESTJESPERE",
+            "description": "RIEN28",
+            "artiste": "Vincent van Gogh",
+            "couleur_dominante": "RIEN32324",
+            "courant": "RIEN2423"
+        },
+        {
+            "titre": "test",
+            "description": "test",
+            "artiste": null,
+            "couleur_dominante": "test",
+            "courant": "test"
         }
     ],
     "collections": [
@@ -101,7 +122,9 @@
             "nom": "Impressionnisme",
             "oeuvres": [
                 "jetaime",
-                "benjaverif"
+                "benjaverif",
+                "FINALTESTJESPERE",
+                "Saad"
             ]
         },
         {
@@ -109,13 +132,15 @@
             "oeuvres": [
                 "Saad",
                 "benja",
-                "jetaime"
+                "jetaime",
+                "La Nuit Étoilée"
             ]
         },
         {
             "nom": "couleur dominante",
             "oeuvres": [
-                "benjaverif"
+                "benjaverif",
+                "jetaime"
             ]
         },
         {

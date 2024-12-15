@@ -29,3 +29,5 @@ class Collection:
             if oeuvre:
                 collection.ajouter_oeuvre(oeuvre)
         return collection
+    
+    
