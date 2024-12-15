@@ -52,6 +52,13 @@
             "artiste": "test test",
             "couleur_dominante": "bleu",
             "courant": "bz"
+        },
+        {
+            "titre": "jetaime",
+            "description": "jetaimequoi",
+            "artiste": null,
+            "couleur_dominante": "rouge",
+            "courant": "amour"
         }
     ],
     "collections": [
@@ -63,7 +70,20 @@
             "nom": "TestCollec",
             "oeuvres": [
                 "Saad",
-                "benja"
+                "benja",
+                "jetaime"
+            ]
+        }
+    ],
+    "expositions": [
+        {
+            "collections": [
+                "TestCollec"
+            ],
+            "date": "2010/20/20",
+            "invités": [
+                "Macron",
+                "Brigitte"
             ]
         }
     ]

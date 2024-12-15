@@ -3,7 +3,7 @@ from Artiste import ( Artiste,
 )
 from Oeuvre import Oeuvre
 from Collection import Collection
-
+from Exposition import Exposition
 
 def demander_date_str(message, obligatoire=False):
     while True:
@@ -163,13 +163,85 @@ def gerer_collection(artistes, oeuvres, collections):
         if encore != 'oui':
             break
 
+def gerer_expositions(collections, expositions):
+    choix = input("Voulez-vous 'créer' une nouvelle exposition, 'modifier' une exposition existante, ou 'voir' les expositions existantes ? (créer/modifier/voir) : ").strip().lower()
+    if choix == 'créer' or choix == 'creer':
+        date = input("Entrez la date de l'exposition (AAAA-MM-JJ): ")
+        collections_exposees = choisir_collections(collections)
+        exposition = Exposition(collections_exposees, date)
+        gerer_invites(exposition)
+        expositions.append(exposition)
+        print(f"Exposition prévue le {date} créée.")
+    elif choix == 'modifier':
+        date = input("Entrez la date de l'exposition à modifier (AAAA-MM-JJ): ")
+        exposition = next((expo for expo in expositions if expo.date == date), None)
+        if exposition:
+            gerer_invites(exposition)
+        else:
+            print("Aucune exposition trouvée pour cette date.")
+    elif choix == 'voir':
+        if expositions:
+            for expo in expositions:
+                print(expo)
+        else:
+            print("Aucune exposition existante.")
+    else:
+        print("Choix invalide.")
+        
+def gerer_invites(exposition):
+    while True:
+        action = input("Voulez-vous 'ajouter' des invités, 'enlever' des invités, ou 'terminer' ? ").strip().lower()
+        if action == 'ajouter':
+            invités = input("Entrez les noms des invités à ajouter (séparés par une virgule): ").split(',')
+            exposition.ajouter_invités([invité.strip() for invité in invités])
+        elif action == 'enlever':
+            invités = input("Entrez les noms des invités à enlever (séparés par une virgule): ").split(',')
+            exposition.enlever_invités([invité.strip() for invité in invités])
+        elif action == 'terminer':
+            print("Gestion des invités terminée.")
+            break
+        else:
+            print("Action non reconnue. Veuillez entrer 'ajouter', 'enlever', ou 'terminer'.")
+     
+        
+def choisir_collections(collections):
+    print("Collections disponibles:")
+    for idx, collection in enumerate(collections, start=1):
+        print(f"{idx}. {collection.nom}")
+
+    choix = input("Entrez les numéros ou les noms des collections à inclure, séparés par des virgules: ")
+    choix_split = choix.split(',')
+
+    collections_exposees = []
+    for item in choix_split:
+        item = item.strip()
+        if item.isdigit():
+            index = int(item) - 1
+            if 0 <= index < len(collections):
+                collections_exposees.append(collections[index])
+            else:
+                print(f"Aucune collection trouvée à l'indice {item}")
+        else:
+            found = False
+            for collection in collections:
+                if collection.nom.lower() == item.lower():
+                    collections_exposees.append(collection)
+                    found = True
+                    break
+            if not found:
+                print(f"Aucune collection trouvée avec le nom '{item}'")
+
+    return collections_exposees
+
+
 
 def main():
     fichier_donnees = "donnees.json"
-    artistes, oeuvres, collections = charger_donnees(fichier_donnees)
+    # Assurez-vous d'avoir quatre variables pour récupérer les données chargées
+    artistes, oeuvres, collections, expositions = charger_donnees(fichier_donnees)
 
     while True:
-        choix = input("Voulez-vous gérer un 'artiste', une 'oeuvre', une 'collection' ou 'quitter' ? ").strip().lower()
+        choix = input("Voulez-vous gérer un 'artiste', une 'oeuvre', une 'collection', 'exposition' ou 'quitter' ? ").strip().lower()
         if choix == 'quitter':
             break
         elif choix == 'artiste':
@@ -178,9 +250,12 @@ def main():
             ajouter_ou_trouver_oeuvre(artistes, oeuvres)
         elif choix == 'collection':
             gerer_collection(artistes, oeuvres, collections)
+        elif choix == 'exposition':
+            gerer_expositions(collections, expositions)
+        else:
+            print("Choix non reconnu. Veuillez essayer à nouveau.")
 
-    sauvegarder_donnees(fichier_donnees, artistes, oeuvres, collections)
-
+    sauvegarder_donnees(fichier_donnees, artistes, oeuvres, collections, expositions)
 
 if __name__ == "__main__":
     main()

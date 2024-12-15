@@ -34,11 +34,12 @@ class Oeuvre:
 
     @staticmethod
     def from_dict(data, artistes):
-        artiste = next((a for a in artistes if a.identite == data["artiste"]), None)
+        # Recherche l'artiste associé par son identité
+        artiste = next((a for a in artistes if a.identite == data.get('artiste')), None)
         return Oeuvre(
-            titre=data["titre"],
-            description=data["description"],
-            artiste=artiste,
-            couleur_dominante=data.get("couleur_dominante"),
-            courant=data.get("courant")
+            data['titre'],
+            data['description'],
+            artiste,
+            data.get('couleur_dominante'),
+            data.get('courant')
         )
