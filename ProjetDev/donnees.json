@@ -59,12 +59,22 @@
             "artiste": null,
             "couleur_dominante": "rouge",
             "courant": "amour"
+        },
+        {
+            "titre": "benjaverif",
+            "description": "verif oeuvre",
+            "artiste": null,
+            "couleur_dominante": "green",
+            "courant": "amour"
         }
     ],
     "collections": [
         {
             "nom": "Impressionnisme",
-            "oeuvres": []
+            "oeuvres": [
+                "jetaime",
+                "benjaverif"
+            ]
         },
         {
             "nom": "TestCollec",
@@ -72,6 +82,12 @@
                 "Saad",
                 "benja",
                 "jetaime"
+            ]
+        },
+        {
+            "nom": "couleur dominante",
+            "oeuvres": [
+                "benjaverif"
             ]
         }
     ],
