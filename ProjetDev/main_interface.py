@@ -16,59 +16,58 @@ def demander_date_str(message, obligatoire=False):
 
 
 def creer_ou_trouver_artiste(artistes):
-    identite = input("Entrez le nom complet de l'artiste (Prénom Nom): ").strip()
-    artiste = trouver_artiste_par_nom(artistes, identite)
-    
+    identite = input("Entrez le nom complet de l'artiste (Prénom Nom) : ").strip()
+    # Normaliser l'entrée pour une comparaison insensible à la casse
+    artiste = trouver_artiste_par_nom(artistes, identite.lower())
+
     if artiste:
         print(f"Artiste trouvé : {artiste}")
-        action = input("Voulez-vous 'voir' l'artiste ou 'modifier' ses informations ? (voir/modifier): ").strip().lower()
+        action = input("Voulez-vous 'voir' l'artiste ou 'modifier' ses informations ? (voir/modifier) : ").strip().lower()
         if action == 'modifier':
-            identite = input("Modifier nom et prénom (laisser vide pour ne pas modifier)").strip()
-            biographie = input("Nouvelle biographie (laisser vide pour ne pas modifier): ").strip()
-            date_naissance = input("Nouvelle date de naissance (AAAA-MM-JJ, laisser vide pour ne pas modifier): ").strip()
-            date_deces = input("Nouvelle date de décès (AAAA-MM-JJ, laisser vide pour ne pas modifier): ").strip()
+            identite = input("Modifier nom et prénom (laisser vide pour ne pas modifier) : ").strip()
+            biographie = input("Nouvelle biographie (laisser vide pour ne pas modifier) : ").strip()
+            date_naissance = input("Nouvelle date de naissance (AAAA-MM-JJ, laisser vide pour ne pas modifier) : ").strip()
+            date_deces = input("Nouvelle date de décès (AAAA-MM-JJ, laisser vide pour ne pas modifier) : ").strip()
             artiste.modifier(biographie, date_naissance, date_deces)
             print(f"Artiste modifié : {artiste}")
         return artiste
     else:
         print("Artiste non trouvé.")
-        if input("Voulez-vous créer cet artiste ? (oui/non): ").strip().lower() == "oui":
-            bio = input("Biographie: ").strip()
-            date_naissance = input("Date de naissance (AAAA-MM-JJ): ").strip()
-            date_deces = input("Date de décès (si applicable, sinon laisser vide): ").strip() or None
-            artiste = Artiste(identite, bio, date_naissance, date_deces)
-            artistes.append(artiste)
-            return artiste
+        if input("Voulez-vous créer cet artiste ? (oui/non) : ").strip().lower() == "oui":
+            bio = input("Biographie : ").strip()
+            date_naissance = input("Date de naissance (AAAA-MM-JJ) : ").strip()
+            date_deces = input("Date de décès (si applicable, sinon laisser vide) : ").strip() or None
+            # Assurer une gestion cohérente de l'identité de l'artiste
+            new_artiste = Artiste(identite.title(), bio, date_naissance, date_deces)
+            artistes.append(new_artiste)
+            return new_artiste
     return None
 
+
 def ajouter_oeuvres_multiples_a_collection(oeuvres, collection):
-    print("Choisissez un ou plusieurs critères pour ajouter des œuvres à la collection (séparez par des virgules):")
+    print("Choisissez un critère pour ajouter des œuvres à la collection :")
     print("1. Artiste")
     print("2. Courant artistique")
     print("3. Couleur dominante")
-    choix_utilisateur = input("Votre choix (ex: 1, 2) : ").strip()
+    choix = input("Votre choix (ex: 1, 2, 3) : ").strip()
 
-    critere_mapping = {
-        '1': ('artiste', 'identite'),
-        '2': ('courant', 'courant'),
-        '3': ('couleur_dominante', 'couleur_dominante')
-    }
-    choixs = choix_utilisateur.split(',')
-    criteres = []
+    if choix == '1' or choix == 'artiste' or choix == 'Artiste':
+        artiste_recherche = input("Entrez le nom de l'artiste : ").strip().lower()  # Utilisez .lower() pour la comparaison insensible à la casse
+        oeuvres_a_ajouter = [o for o in oeuvres if o.artiste and o.artiste.identite.lower() == artiste_recherche]
+    elif choix == '2' or choix == 'courant artistique' or choix == 'Courant artistique':
+        courant_recherche = input("Entrez le courant artistique : ").strip().lower()
+        oeuvres_a_ajouter = [o for o in oeuvres if o.courant.lower() == courant_recherche]
+    elif choix == '3'or choix == 'couleur dominante' or choix == 'Couleur dominante':
+        couleur_recherche = input("Entrez la couleur dominante : ").strip().lower()
+        oeuvres_a_ajouter = [o for o in oeuvres if o.couleur_dominante.lower() == couleur_recherche]
+    else:
+        print("Choix invalide.")
+        return
 
-    for choix in choixs:
-        choix = choix.strip()
-        if choix in critere_mapping:
-            nom_critere, attr = critere_mapping[choix]
-            valeur = input(f"Entrez {nom_critere} : ").strip()
-            criteres.append((attr, valeur.lower()))
-
-    oeuvres_a_ajouter = [oeuvre for oeuvre in oeuvres if all(getattr(oeuvre, attr, '').lower() == val for attr, val in criteres)]
-    
-    for oeuvre in oeuvres_a_ajouter:
-        collection.ajouter_oeuvre(oeuvre)
-        print(f"'{oeuvre.titre}' ajoutée à la collection '{collection.nom}'.")
     if oeuvres_a_ajouter:
+        for oeuvre in oeuvres_a_ajouter:
+            collection.ajouter_oeuvre(oeuvre)
+            print(f"'{oeuvre.titre}' ajoutée à la collection '{collection.nom}'.")
         print(f"{len(oeuvres_a_ajouter)} œuvres ajoutées à la collection.")
     else:
         print("Aucune œuvre trouvée avec les critères spécifiés.")
