@@ -91,17 +91,20 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
         description = input("Description de l'œuvre: ").strip()
         couleur_dominante = input("Couleur dominante: ").strip()
         courant = input("Courant artistique: ").strip()
-        artiste = creer_ou_trouver_artiste(artistes)
-        if artiste:
-            oeuvre = Oeuvre(
-                titre=titre,
-                description=description,
-                artiste=artiste,
-                couleur_dominante=couleur_dominante,
-                courant=courant
-            )
-            oeuvres.append(oeuvre)
-            return oeuvre
+        choix_artiste = input("Artiste connu ? (oui/non): ")
+        if choix_artiste == "non":
+            artiste = None 
+        else:    
+            artiste = creer_ou_trouver_artiste(artistes)
+        oeuvre = Oeuvre(
+            titre=titre,
+            description=description,
+            artiste=artiste,
+            couleur_dominante=couleur_dominante,
+            courant=courant
+        )
+        oeuvres.append(oeuvre)
+        return oeuvre
     return None
 
 def afficher_collections_disponibles(collections):
