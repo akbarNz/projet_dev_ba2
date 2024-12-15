@@ -1,3 +1,4 @@
+
 from Artiste import ( Artiste,
     charger_donnees, sauvegarder_donnees,trouver_artiste_par_nom, trouver_oeuvre_par_titre, valider_format_date
 )
@@ -190,7 +191,7 @@ def gerer_expositions(collections, expositions):
         
 def gerer_invites(exposition):
     while True:
-        action = input("Voulez-vous 'ajouter' des invités, 'enlever' des invités, ou 'terminer' ? ").strip().lower()
+        action = input("Voulez-vous 'ajouter' des invités, 'enlever' des invités, ou 'terminer' ? (ajouter/enlever/terminer) ").strip().lower()
         if action == 'ajouter':
             invités = input("Entrez les noms des invités à ajouter (séparés par une virgule): ").split(',')
             exposition.ajouter_invités([invité.strip() for invité in invités])
