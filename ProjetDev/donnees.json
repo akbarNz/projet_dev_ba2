@@ -1,12 +1,23 @@
 {
     "artistes": [],
-    "oeuvres": [],
-    "collections": [],
-    "expositions": [
+    "oeuvres": [
         {
-            "collections": [],
-            "date": "20/20/20",
-            "invités": []
+            "titre": "supri",
+            "description": "supsup",
+            "artiste": null,
+            "couleur_dominante": "sup",
+            "courant": "sup"
         }
-    ]
+    ],
+    "collections": [
+        {
+            "nom": "suppromer",
+            "oeuvres": []
+        },
+        {
+            "nom": "testfinal",
+            "oeuvres": []
+        }
+    ],
+    "expositions": []
 }

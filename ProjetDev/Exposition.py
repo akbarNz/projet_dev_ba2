@@ -1,4 +1,3 @@
-# Dans Exposition.py
 class Exposition:
     def __init__(self, collections, date, invités=[]):
         self.collections = collections
@@ -21,6 +20,13 @@ class Exposition:
                 enlevés += 1
         print(f"{enlevés} invités enlevés.")
 
+    def supprimer_collection(self, collection):
+        if collection in self.collections:
+            self.collections.remove(collection)
+            print(f"La collection '{collection.nom}' a été supprimée de l'exposition du {self.date}.")
+        else:
+            print(f"La collection '{collection.nom}' n'est pas présente dans cette exposition.")
+
     def to_dict(self):
         return {
             "collections": [col.nom for col in self.collections],
@@ -30,9 +36,12 @@ class Exposition:
 
     @staticmethod
     def from_dict(data, collections):
-        # Trouver les objets de collection par leur nom
         collections_expo = [next((c for c in collections if c.nom == nom), None) for nom in data["collections"]]
         return Exposition(collections_expo, data["date"], data["invités"])
+
+    def supprimer_toutes_les_collections(self):
+        self.collections.clear()
+        print(f"Toutes les collections ont été supprimées de l'exposition du {self.date}.")
 
     def __str__(self):
         invités_str = ', '.join(self.invités)
