@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0" version="25.0.1">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.8.6">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="2269" dy="828" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2312" dy="908" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -40,7 +40,7 @@
         <mxCell id="evRFQ8Dqrcnhtjwd-w8t-8" value="+ __init__(nom: str): None&lt;br&gt;&lt;div&gt;+ __str__(): None&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ to_dict(): dict&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ from_dict(data: json, livre:list): Collection&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="evRFQ8Dqrcnhtjwd-w8t-5" vertex="1">
           <mxGeometry y="70" width="360" height="91" as="geometry" />
         </mxCell>
-        <mxCell id="evRFQ8Dqrcnhtjwd-w8t-9" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;entryX=0.006;entryY=0.73;entryDx=0;entryDy=0;entryPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1" target="evRFQ8Dqrcnhtjwd-w8t-6">
+        <mxCell id="evRFQ8Dqrcnhtjwd-w8t-9" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;entryX=0.006;entryY=0.73;entryDx=0;entryDy=0;entryPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" target="evRFQ8Dqrcnhtjwd-w8t-6" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="429" y="103" as="sourcePoint" />
             <mxPoint x="461" y="102" as="targetPoint" />
@@ -85,7 +85,7 @@
         <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-26" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Artiste&lt;/h1&gt;&lt;p&gt;l&#39;identité de l&#39;artiste.&lt;br&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-475" y="527" width="180" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="MWXXyaoJdjHS72x86Rfk-0" value="" style="endArrow=none;html=1;rounded=0;exitX=1.016;exitY=0.016;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.494;entryY=1.011;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="I2Vo8YAyR-l4Du6Dh9Zq-7" target="evRFQ8Dqrcnhtjwd-w8t-8">
+        <mxCell id="MWXXyaoJdjHS72x86Rfk-0" value="" style="endArrow=none;html=1;rounded=0;exitX=1.016;exitY=0.016;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.494;entryY=1.011;entryDx=0;entryDy=0;entryPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="I2Vo8YAyR-l4Du6Dh9Zq-7" target="evRFQ8Dqrcnhtjwd-w8t-8" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="458" y="513" as="sourcePoint" />
             <mxPoint x="729" y="521" as="targetPoint" />
@@ -94,10 +94,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="MWXXyaoJdjHS72x86Rfk-1" value="1...n" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="MWXXyaoJdjHS72x86Rfk-1" value="1...n" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="354" y="591" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="MWXXyaoJdjHS72x86Rfk-2" value="1...1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="MWXXyaoJdjHS72x86Rfk-2" value="0...n" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="784" y="217" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
