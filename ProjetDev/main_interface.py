@@ -242,11 +242,6 @@ def gerer_expositions(collections, expositions):
         print("Choix invalide.")
 
 
-<<<<<<< HEAD
-      
-=======
-
->>>>>>> f6a2cd1c0a67c5297b0ccf601ad409b8d81a1e25
 def gerer_invites(exposition):
     while True:
         action = input("Voulez-vous 'ajouter' des invités, 'enlever' des invités, ou 'terminer' ? (ajouter/enlever/terminer) ").strip().lower()
