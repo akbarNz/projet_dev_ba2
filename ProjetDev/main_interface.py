@@ -201,10 +201,33 @@ def gerer_expositions(collections, expositions):
         expositions.append(exposition)
         print(f"Exposition prévue le {date} créée.")
     elif choix == 'modifier':
-        date = input("Entrez la date de l'exposition à modifier (AAAA-MM-JJ): ")
+        date = input("Entrez la date de l'exposition à modifier (AAAA-MM-JJ): ").strip()
         exposition = next((expo for expo in expositions if expo.date == date), None)
         if exposition:
-            gerer_invites(exposition)
+            while True:
+                action = input("Voulez-vous 'ajouter' des invités, 'enlever' des invités, 'supprimer' l'exposition, 'enlever collections', ou 'terminer' ? (ajouter/enlever/supprimer/enlever collections/terminer) : ").strip().lower()
+                if action == 'ajouter':
+                    invités = input("Entrez les noms des invités à ajouter (séparés par une virgule): ").split(',')
+                    exposition.ajouter_invités([invité.strip() for invité in invités])
+                elif action == 'enlever':
+                    invités = input("Entrez les noms des invités à enlever (séparés par une virgule): ").split(',')
+                    exposition.enlever_invités([invité.strip() for invité in invités])
+                elif action == 'supprimer':
+                    expositions.remove(exposition)
+                    print(f"L'exposition prévue le {date} a été supprimée.")
+                    break
+                elif action == 'enlever collections':
+                    nom_collection = input("Entrez le nom de la collection à enlever : ").strip()
+                    collection = next((col for col in exposition.collections if col.nom == nom_collection), None)
+                    if collection:
+                        exposition.supprimer_collection(collection)
+                    else:
+                        print(f"La collection '{nom_collection}' n'est pas présente dans cette exposition.")
+                elif action == 'terminer':
+                    print("Modification terminée.")
+                    break
+                else:
+                    print("Action non reconnue. Veuillez réessayer.")
         else:
             print("Aucune exposition trouvée pour cette date.")
     elif choix == 'voir':
@@ -215,6 +238,7 @@ def gerer_expositions(collections, expositions):
             print("Aucune exposition existante.")
     else:
         print("Choix invalide.")
+
         
 def gerer_invites(exposition):
     while True:
