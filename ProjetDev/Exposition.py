@@ -37,4 +37,3 @@ class Exposition:
     def __str__(self):
         invités_str = ', '.join(self.invités)
         return f"Exposition le {self.date}, Collections: {[col.nom for col in self.collections]}, Invités: {invités_str if invités_str else 'Aucun'}"
-    
