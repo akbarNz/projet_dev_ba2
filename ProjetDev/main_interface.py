@@ -15,20 +15,19 @@ def demander_date_str(message, obligatoire=False):
 
 def creer_ou_trouver_artiste(artistes):
     identite = input("Entrez le nom complet de l'artiste (Prénom Nom) : ").strip()
-    # Normaliser l'entrée pour une comparaison insensible à la casse
     artiste = trouver_artiste_par_nom(artistes, identite.lower())
 
     if artiste:
         print(f"Artiste trouvé : {artiste}")
         action = input("Voulez-vous 'voir' l'artiste ou 'modifier' ses informations ? (voir/modifier) : ").strip().lower()
         if action == 'voir':
-            print(artiste)  # Afficher les détails de l'artiste, assurez-vous que la méthode __str__ ou similaire est définie
+            print(artiste)
         elif action == 'modifier':
             identite = input("Modifier nom et prénom (laisser vide pour ne pas modifier): ").strip()
             biographie = input("Nouvelle biographie (laisser vide pour ne pas modifier): ").strip()
             date_naissance = input("Nouvelle date de naissance (AAAA-MM-JJ, laisser vide pour ne pas modifier): ").strip()
             date_deces = input("Nouvelle date de décès (AAAA-MM-JJ, laisser vide pour ne pas modifier): ").strip()
-            artiste.modifier(biographie, date_naissance, date_deces)  # Assurez-vous que la méthode modifier gère correctement les entrées vides
+            artiste.modifier(biographie, date_naissance, date_deces)
             print(f"Artiste modifié : {artiste}")
     else:
         print("Artiste non trouvé.")
@@ -36,7 +35,23 @@ def creer_ou_trouver_artiste(artistes):
             bio = input("Biographie : ").strip()
             date_naissance = input("Date de naissance (AAAA-MM-JJ) : ").strip()
             date_deces = input("Date de décès (si applicable, sinon laisser vide) : ").strip() or None
-            # Assurer une gestion cohérente de l'identité de l'artiste
+            new_artiste = Artiste(identite.title(), bio, date_naissance, date_deces)
+            artistes.append(new_artiste)
+            return new_artiste
+    return None
+
+def creer_ou_trouver_artiste2(artistes):
+    identite = input("Entrez le nom complet de l'artiste (Prénom Nom) : ").strip()
+    artiste = trouver_artiste_par_nom(artistes, identite.lower())
+
+    if artiste:
+        print(f"Artiste trouvé : {artiste}")
+    else:
+        print("Artiste non trouvé.")
+        if input("Voulez-vous créer cet artiste ? (oui/non) : ").strip().lower() == "oui":
+            bio = input("Biographie : ").strip()
+            date_naissance = input("Date de naissance (AAAA-MM-JJ) : ").strip()
+            date_deces = input("Date de décès (si applicable, sinon laisser vide) : ").strip() or None
             new_artiste = Artiste(identite.title(), bio, date_naissance, date_deces)
             artistes.append(new_artiste)
             return new_artiste
@@ -53,7 +68,6 @@ def ajouter_oeuvres_multiples_a_collection(oeuvres, collection):
     oeuvres_a_ajouter = []
     critere = None
 
-    # Gestion des critères multiples
     choixs = choix_utilisateur.split(',')
     for choix in choixs:
         choix = choix.strip()
@@ -70,7 +84,6 @@ def ajouter_oeuvres_multiples_a_collection(oeuvres, collection):
             print("Choix invalide.")
             return
 
-    # Filtrer les œuvres pour éviter les doublons dans les ajouts multiples
     oeuvres_a_ajouter = list(set(oeuvres_a_ajouter))
 
     oeuvres_deja_presentes = [o for o in oeuvres_a_ajouter if o in collection.oeuvres]
@@ -98,7 +111,7 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
         print(f"Œuvre trouvée : {oeuvre}")
         if oeuvre.artiste is None:
             if input("Cette œuvre n'a pas d'artiste assigné. Voulez-vous en ajouter un ? (oui/non) : ").strip().lower() == "oui":
-                artiste = creer_ou_trouver_artiste(artistes)
+                artiste = creer_ou_trouver_artiste2(artistes)
                 if artiste:
                     oeuvre.assigner_artiste(artiste)  # S'assurer que cette méthode est bien définie dans la classe Oeuvre.
                     print(f"L'artiste '{artiste.identite}' a été assigné à l'œuvre '{oeuvre.titre}'.")
@@ -111,7 +124,7 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
         choix_artiste = input("Artiste connu ? (oui/non): ")
         artiste = None
         if choix_artiste.lower() == 'oui':
-            artiste = creer_ou_trouver_artiste(artistes)
+            artiste = creer_ou_trouver_artiste2(artistes)
         oeuvre = Oeuvre(
             titre=titre,
             description=description,
@@ -139,10 +152,8 @@ def choisir_collection(collections):
         return None
     choix = input("Choisissez une collection par numéro ou entrez le nom : ").strip().lower()
     try:
-        # Permet de choisir par numéro, en supposant que l'utilisateur peut saisir un indice basé sur l'affichage précédent
         return collections[int(choix) - 1]
     except (ValueError, IndexError):
-        # Permet de choisir par nom si l'entrée n'est pas un nombre ou hors de l'index
         return next((col for col in collections if col.nom.lower() == choix), None)
 
 def gerer_collection(artistes, oeuvres, collections):
@@ -254,7 +265,6 @@ def choisir_collections(collections):
 
 def main():
     fichier_donnees = "donnees.json"
-    # Assurez-vous d'avoir quatre variables pour récupérer les données chargées
     artistes, oeuvres, collections, expositions = charger_donnees(fichier_donnees)
 
     while True:
