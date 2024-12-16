@@ -1,7 +1,3 @@
-import json
-import re
-from Oeuvre import Oeuvre
-
 class Collection:
     def __init__(self, nom):
         self.nom = nom
@@ -24,9 +20,6 @@ class Collection:
     def enlever_oeuvre(self, oeuvre):
         if oeuvre in self.oeuvres:
             self.oeuvres.remove(oeuvre)
-            print(f"L'œuvre '{oeuvre.titre}' a été retirée de la collection '{self.nom}'.")
-        else:
-            print("L'œuvre n'est pas dans cette collection.")
             
     @staticmethod
     def from_dict(data, oeuvres):
@@ -36,5 +29,3 @@ class Collection:
             if oeuvre:
                 collection.ajouter_oeuvre(oeuvre)
         return collection
-    
-    
