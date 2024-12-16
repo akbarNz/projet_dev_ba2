@@ -1,5 +1,12 @@
 {
-    "artistes": [],
+    "artistes": [
+        {
+            "identite": "Jean Batard",
+            "biographie": "kkk",
+            "date_naissance": "2020-20-20",
+            "date_deces": null
+        }
+    ],
     "oeuvres": [
         {
             "titre": "supri",
@@ -7,6 +14,13 @@
             "artiste": null,
             "couleur_dominante": "sup",
             "courant": "sup"
+        },
+        {
+            "titre": "creer",
+            "description": "js",
+            "artiste": null,
+            "couleur_dominante": "rouge",
+            "courant": "ptn"
         }
     ],
     "collections": [
@@ -16,7 +30,9 @@
         },
         {
             "nom": "testfinal",
-            "oeuvres": []
+            "oeuvres": [
+                "creer"
+            ]
         }
     ],
     "expositions": []

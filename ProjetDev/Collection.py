@@ -27,6 +27,8 @@ class Collection:
             print(f"L'œuvre '{oeuvre.titre}' a été retirée de la collection '{self.nom}'.")
         else:
             print("L'œuvre n'est pas dans cette collection.")
+            
+
     
     @staticmethod
     def from_dict(data, oeuvres):
