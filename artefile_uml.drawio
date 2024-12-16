@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0" version="25.0.1">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1548" dy="414" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="evRFQ8Dqrcnhtjwd-w8t-0" value="Oeuvre" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="141" y="24" width="286" height="229" as="geometry" />
+        </mxCell>
+        <mxCell id="evRFQ8Dqrcnhtjwd-w8t-1" value="&lt;div&gt;&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;+ titre: str&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;+ description : str&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;+ artiste: Artiste = None&lt;/span&gt;&lt;br style=&quot;padding: 0px; margin: 0px; text-wrap-mode: nowrap;&quot;&gt;&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;+ couleur_dominante: str = None&lt;br&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;+ courant: None = str&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="evRFQ8Dqrcnhtjwd-w8t-0" vertex="1">
+          <mxGeometry y="26" width="286" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="evRFQ8Dqrcnhtjwd-w8t-2" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="evRFQ8Dqrcnhtjwd-w8t-0" vertex="1">
+          <mxGeometry y="96" width="286" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="evRFQ8Dqrcnhtjwd-w8t-3" value="+ __init__(titre: str, description: str, artiste:str =None, couleur_dominante:str =None, courant:str =None): None&lt;br&gt;&lt;div&gt;+ __str__(): None&lt;/div&gt;&lt;div&gt;+ to_dict(): dict&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ &lt;span style=&quot;background-color: initial;&quot;&gt;assigner_artiste(artiste: str): None&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ from_dict(data: dict, artistes: list): None&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="evRFQ8Dqrcnhtjwd-w8t-0" vertex="1">
+          <mxGeometry y="110" width="286" height="119" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-0" value="Artiste" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-475" y="207" width="432" height="314" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-1" value="&lt;div&gt;+ identite: str&lt;/div&gt;&lt;div&gt;+ biographie : str&lt;/div&gt;&lt;div&gt;+ date_naissance : date&lt;/div&gt;&lt;div&gt;+ date_deces : date = None&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="I2Vo8YAyR-l4Du6Dh9Zq-0" vertex="1">
+          <mxGeometry y="26" width="432" height="79" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-2" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="I2Vo8YAyR-l4Du6Dh9Zq-0" vertex="1">
+          <mxGeometry y="105" width="432" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-3" value="&lt;div&gt;+ __init__( identite: str, bio : str, date_naissance: str, date_deces: str= Null) : None&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ __str__(): str&lt;/div&gt;&lt;div&gt;+ to_dict() : dict&lt;/div&gt;&lt;div&gt;- from_dict(data : dict) : None&lt;/div&gt;&lt;div&gt;+ modifier(identite: str= None, biographie: str = None, date_naissance : str = None, date-deces : str = None) : None&lt;/div&gt;&lt;div&gt;+ valider_format_date(date_str: str) : tuple&lt;/div&gt;&lt;div&gt;+ trouver_artiste_par_nom(artistes, nom) : tuple&lt;/div&gt;&lt;div&gt;+ trouver_oeuvre_par_titre(oeuvres: list, titre: str) : tuple&lt;/div&gt;&lt;div&gt; + sauvegarder_donnees(fichier:str, artistes:list, oeuvres:list, collections:list, expositions:list) : None&lt;/div&gt;&lt;div&gt;+ charger_donnees(fichier: str): list&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="I2Vo8YAyR-l4Du6Dh9Zq-0" vertex="1">
+          <mxGeometry y="113" width="432" height="201" as="geometry" />
+        </mxCell>
+        <mxCell id="evRFQ8Dqrcnhtjwd-w8t-5" value="Collection" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="673" y="50" width="360" height="161" as="geometry" />
+        </mxCell>
+        <mxCell id="evRFQ8Dqrcnhtjwd-w8t-6" value="+ nom: str&lt;div&gt;&lt;div&gt;+ liste_oeuvre : list[Oeuvre]&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="evRFQ8Dqrcnhtjwd-w8t-5" vertex="1">
+          <mxGeometry y="26" width="360" height="37" as="geometry" />
+        </mxCell>
+        <mxCell id="evRFQ8Dqrcnhtjwd-w8t-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="evRFQ8Dqrcnhtjwd-w8t-5" vertex="1">
+          <mxGeometry y="63" width="360" height="7" as="geometry" />
+        </mxCell>
+        <mxCell id="evRFQ8Dqrcnhtjwd-w8t-8" value="+ __init__(nom: str): None&lt;br&gt;&lt;div&gt;+ __str__(): None&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ to_dict(): dict&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ from_dict(data: json, livre:list): Collection&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="evRFQ8Dqrcnhtjwd-w8t-5" vertex="1">
+          <mxGeometry y="70" width="360" height="91" as="geometry" />
+        </mxCell>
+        <mxCell id="evRFQ8Dqrcnhtjwd-w8t-9" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;entryX=0.006;entryY=0.73;entryDx=0;entryDy=0;entryPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1" target="evRFQ8Dqrcnhtjwd-w8t-6">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="429" y="103" as="sourcePoint" />
+            <mxPoint x="461" y="102" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-4" value="Exposition" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="89" y="540" width="248" height="214" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-5" value="&lt;div&gt;+ collections: list&lt;/div&gt;&lt;div&gt;+ date : str&lt;/div&gt;&lt;div&gt;+ invites: list&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="I2Vo8YAyR-l4Du6Dh9Zq-4" vertex="1">
+          <mxGeometry y="26" width="248" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-6" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="I2Vo8YAyR-l4Du6Dh9Zq-4" vertex="1">
+          <mxGeometry y="82" width="248" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-7" value="&lt;div&gt;+ __init__(collections : list, date : str, invites : list): None&lt;/div&gt;&lt;div&gt;+ ajouter_invités(liste_invités: list): None&lt;/div&gt;&lt;div&gt;+ enlever_invités(self, liste_invités): None&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ to_dict(): None&lt;/div&gt;&lt;div&gt;+ from_dict(data: dict, collections: list):Exposition&lt;/div&gt;&lt;div&gt;+ __str__(): str&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="I2Vo8YAyR-l4Du6Dh9Zq-4" vertex="1">
+          <mxGeometry y="90" width="248" height="124" as="geometry" />
+        </mxCell>
+        <mxCell id="F8SHtybh7W9j-nXOx--l-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="I2Vo8YAyR-l4Du6Dh9Zq-1" target="evRFQ8Dqrcnhtjwd-w8t-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-11" value="1...*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="70" y="62" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-12" value="1...1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-39" y="277" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-13" value="1...*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="608" y="69" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-14" value="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="439" y="69" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-22" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Collection&lt;br&gt;&lt;/h1&gt;&lt;p&gt;&lt;span class=&quot;TextRun SCXW251232665 BCX2&quot; lang=&quot;FR-FR&quot; style=&quot;font-size: 10.5pt; font-style: normal; font-variant: normal; text-transform: none; line-height: 19.7625px; font-family: &amp;quot;Source Code Pro&amp;quot;, &amp;quot;Source Code Pro_EmbeddedFont&amp;quot;, &amp;quot;Source Code Pro_MSFontService&amp;quot;, sans-serif; font-weight: normal;&quot; data-contrast=&quot;auto&quot;&gt;&lt;span class=&quot;NormalTextRun SCXW251232665 BCX2&quot;&gt;Gère les œuvres d&#39;art dans une collection&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="1046" y="194" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-23" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Oeuvre&lt;/h1&gt;&lt;p&gt;&lt;span class=&quot;TextRun SCXW255212346 BCX2&quot; lang=&quot;FR-FR&quot; style=&quot;font-size: 10.5pt; font-style: normal; font-variant: normal; text-transform: none; line-height: 19.7625px; font-family: &amp;quot;Source Code Pro&amp;quot;, &amp;quot;Source Code Pro_EmbeddedFont&amp;quot;, &amp;quot;Source Code Pro_MSFontService&amp;quot;, sans-serif; font-weight: normal;&quot; data-contrast=&quot;auto&quot;&gt;&lt;span class=&quot;NormalTextRun SCXW255212346 BCX2&quot;&gt;Représente une œuvre d&#39;art avec des détails comme le titre, l&#39;artiste, l&#39;année, etc. Visite : Planifie une visite personnalisée pour des invités.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="449" y="241" width="180" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-25" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Exposition&lt;br&gt;&lt;/h1&gt;&lt;p&gt;Le thème et la durée de l&#39;exposition.&lt;br&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="354" y="702" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="I2Vo8YAyR-l4Du6Dh9Zq-26" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Artiste&lt;/h1&gt;&lt;p&gt;l&#39;identité de l&#39;artiste.&lt;br&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-475" y="527" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="MWXXyaoJdjHS72x86Rfk-0" value="" style="endArrow=none;html=1;rounded=0;exitX=1.016;exitY=0.016;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.494;entryY=1.011;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="I2Vo8YAyR-l4Du6Dh9Zq-7" target="evRFQ8Dqrcnhtjwd-w8t-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="458" y="513" as="sourcePoint" />
+            <mxPoint x="729" y="521" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="848" y="628" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
