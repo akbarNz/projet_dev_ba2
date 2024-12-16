@@ -1,9 +1,3 @@
-import json
-import re
-from Oeuvre import Oeuvre
-from Collection import Collection
-from Exposition import Exposition
-
 class Artiste:
     def __init__(self, identite, biographie, date_naissance, date_deces=None):
         self.identite = identite
@@ -43,58 +37,8 @@ class Artiste:
             self.date_deces = date_deces
 
 
-def valider_format_date(date_str):
-    """Valide et conserve la date au format original, sans ajouter de zéros."""
-    if not date_str:
-        return True, None
-
-    match = re.match(r"(\d{1,4})-(\d{1,2})-(\d{1,2})$", date_str)
-    if not match:
-        return False, None
-
-    annee, mois, jour = match.groups()
-
-    if not (1 <= int(annee) <= 9999):
-        return False, None
-    if not (1 <= int(mois) <= 12):
-        return False, None
-    if not (1 <= int(jour) <= 31):
-        return False, None
-
-    return True, date_str
-
-
 def trouver_artiste_par_nom(artistes, nom):
     return next((artiste for artiste in artistes if artiste.identite.lower() == nom.lower()), None)
 
 def trouver_oeuvre_par_titre(oeuvres, titre):
     return next((oeuvre for oeuvre in oeuvres if oeuvre.titre.lower() == titre.lower()), None)
-
-
-def sauvegarder_donnees(fichier, artistes, oeuvres, collections, expositions):
-    data = {
-        "artistes": [artiste.to_dict() for artiste in artistes],
-        "oeuvres": [oeuvre.to_dict() for oeuvre in oeuvres],
-        "collections": [collection.to_dict() for collection in collections],
-        "expositions": [exposition.to_dict() for exposition in expositions]
-    }
-    with open(fichier, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
-    print("Données sauvegardées avec succès.")
-
-    
-def charger_donnees(fichier):
-    try:
-        with open(fichier, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            artistes = [Artiste.from_dict(a) for a in data.get("artistes", [])]
-            oeuvres = [Oeuvre.from_dict(o, artistes) for o in data.get("oeuvres", [])]
-            collections = [Collection.from_dict(c, oeuvres) for c in data.get("collections", [])]
-            expositions = [Exposition.from_dict(e, collections) for e in data.get("expositions", [])]
-            return artistes, oeuvres, collections, expositions
-    except FileNotFoundError:
-        print("Fichier de données non trouvé.")
-        return [], [], [], []
-    except json.JSONDecodeError as e:
-        print(f"Erreur de lecture JSON : {e}")
-        return [], [], [], []
