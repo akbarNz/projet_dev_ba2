@@ -137,6 +137,8 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
         return oeuvre
     return None
 
+
+
 def afficher_collections_disponibles(collections):
     if not collections:
         print("Aucune collection disponible.")
@@ -239,7 +241,8 @@ def gerer_expositions(collections, expositions):
     else:
         print("Choix invalide.")
 
-        
+
+
 def gerer_invites(exposition):
     while True:
         action = input("Voulez-vous 'ajouter' des invités, 'enlever' des invités, ou 'terminer' ? (ajouter/enlever/terminer) ").strip().lower()
@@ -285,6 +288,37 @@ def choisir_collections(collections):
 
     return collections_exposees
 
+
+def supprimer_oeuvre(oeuvres, collections):
+    titre = input("Entrez le titre de l'\u0153uvre à supprimer : ").strip()
+    oeuvre = trouver_oeuvre_par_titre(oeuvres, titre)
+    if oeuvre:
+        for collection in collections:
+            collection.supprimer_oeuvre(oeuvre)
+        oeuvres.remove(oeuvre)
+        print(f"L'\u0153uvre '{titre}' a été supprimée de toutes les collections et du système.")
+    else:
+        print(f"L'\u0153uvre '{titre}' n'a pas été trouvée.")
+
+def supprimer_collection(collections, expositions):
+    nom = input("Entrez le nom de la collection à supprimer : ").strip()
+    collection = next((c for c in collections if c.nom == nom), None)
+    if collection:
+        for exposition in expositions:
+            exposition.supprimer_collection(collection)
+        collections.remove(collection)
+        print(f"La collection '{nom}' a été supprimée de toutes les expositions et du système.")
+    else:
+        print(f"La collection '{nom}' n'a pas été trouvée.")
+
+def supprimer_exposition(expositions):
+    date = input("Entrez la date de l'exposition à supprimer (AAAA-MM-JJ) : ").strip()
+    exposition = next((e for e in expositions if e.date == date), None)
+    if exposition:
+        expositions.remove(exposition)
+        print(f"L'exposition prévue le {date} a été supprimée.")
+    else:
+        print(f"Aucune exposition trouvée pour la date {date}.")
 
 
 def main():
