@@ -28,8 +28,6 @@ class Collection:
         else:
             print("L'œuvre n'est pas dans cette collection.")
             
-
-    
     @staticmethod
     def from_dict(data, oeuvres):
         collection = Collection(data["nom"])

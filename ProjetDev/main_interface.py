@@ -176,34 +176,32 @@ def gerer_collection(artistes, oeuvres, collections):
         collections.append(collection)
         print(f"Nouvelle collection créée : {nom_collection}")
     elif choix_collection == 'utiliser':
-        if collections:  # Assurez-vous que la liste des collections n'est pas vide
-            print("Collections disponibles :")
-            for col in collections:
-                print(f"- {col.nom}")
-        nom_collection = input("Entrez le nom de la collection existante : ").strip()
-        collection = next((c for c in collections if c.nom.lower() == nom_collection.lower()), None)
+        collection = choisir_collection(collections) 
         if not collection:
             print(f"Aucune collection trouvée avec le nom {nom_collection}.")
             return
+        nom_collection = collection.nom  # Utiliser le nom de la collection existante
         print(f"Utilisation de la collection existante : {nom_collection}")
     else:
         print("Choix invalide.")
         return
 
-    if collection:
-        while True:
-            action = input("Voulez-vous 'ajouter', 'retirer' une œuvre ou 'terminer' ? (ajouter/retirer/terminer) : ").strip().lower()
-            if action == 'ajouter':
-                ajouter_oeuvres_multiples_a_collection(oeuvres, collection)
-            elif action == 'retirer':
-                retirer_oeuvre_de_collection(oeuvres, collection)
-            elif action == 'terminer':
-                break
-            else:
-                print("Choix invalide. Veuillez choisir 'ajouter', 'retirer' ou 'terminer'.")
-                
-
-
+    while True:
+        action = input("Voulez-vous ajouter 'une' oeuvre ou 'plusieurs' oeuvres à la collection ? (une/plusieurs) : ").strip().lower()
+        if action == 'une':
+            oeuvre = ajouter_ou_trouver_oeuvre(artistes, oeuvres)
+            if oeuvre:
+                collection.ajouter_oeuvre(oeuvre)
+                print(f"L'oeuvre '{oeuvre.titre}' a été ajoutée à la collection '{nom_collection}'.")
+        elif action == 'plusieurs':
+            ajouter_oeuvres_multiples_a_collection(oeuvres, collection)
+        else:
+            print("Choix invalide. Veuillez choisir 'une' ou 'plusieurs'.")
+            continue
+        
+        encore = input("Voulez-vous ajouter d'autres œuvres à cette collection ? (oui/non) : ").strip().lower()
+        if encore != 'oui':
+            break
 
 def gerer_expositions(collections, expositions):
     choix = input("Voulez-vous 'créer' une nouvelle exposition, 'modifier' une exposition existante, ou 'voir' les expositions existantes ? (créer/modifier/voir) : ").strip().lower()
