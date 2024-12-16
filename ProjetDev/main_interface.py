@@ -137,6 +137,8 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
         return oeuvre
     return None
 
+
+
 def afficher_collections_disponibles(collections):
     if not collections:
         print("Aucune collection disponible.")
@@ -155,41 +157,53 @@ def choisir_collection(collections):
         return collections[int(choix) - 1]
     except (ValueError, IndexError):
         return next((col for col in collections if col.nom.lower() == choix), None)
-
+    
+def retirer_oeuvre_de_collection(oeuvres, collection):
+    titre = input("Entrez le titre de l'œuvre à retirer : ").strip()
+    oeuvre = next((o for o in oeuvres if o.titre.lower() == titre.lower()), None)
+    if oeuvre:
+        collection.retirer_oeuvre(oeuvre)
+    else:
+        print("Oeuvre non trouvée dans la liste globale des œuvres.")
+        
 def gerer_collection(artistes, oeuvres, collections):
     choix_collection = input("Voulez-vous 'créer' une nouvelle collection ou 'utiliser' une collection existante ? (créer/utiliser) : ").strip().lower()
-    if choix_collection == 'creer' or choix_collection == 'créer':
+    collection = None
+
+    if choix_collection in ['creer', 'créer']:
         nom_collection = input("Entrez le nom de la nouvelle collection : ").strip()
         collection = Collection(nom_collection)
         collections.append(collection)
         print(f"Nouvelle collection créée : {nom_collection}")
     elif choix_collection == 'utiliser':
-        collection = choisir_collection(collections)
+        if collections:  # Assurez-vous que la liste des collections n'est pas vide
+            print("Collections disponibles :")
+            for col in collections:
+                print(f"- {col.nom}")
+        nom_collection = input("Entrez le nom de la collection existante : ").strip()
+        collection = next((c for c in collections if c.nom.lower() == nom_collection.lower()), None)
         if not collection:
-            print("Collection non trouvée ou choix invalide.")
+            print(f"Aucune collection trouvée avec le nom {nom_collection}.")
             return
-        nom_collection = collection.nom
         print(f"Utilisation de la collection existante : {nom_collection}")
     else:
         print("Choix invalide.")
         return
 
-    while True:
-        action = input("Voulez-vous 'ajouter', 'retirer' une oeuvre ou 'terminer' ? (ajouter/retirer/terminer) : ").strip().lower()
-        if action == 'ajouter':
-            oeuvre = ajouter_ou_trouver_oeuvre(artistes, oeuvres)
-            if oeuvre:
-                collection.ajouter_oeuvre(oeuvre)
-                print(f"L'œuvre '{oeuvre.titre}' a été ajoutée à la collection '{nom_collection}'.")
-        elif action == 'retirer':
-            titre = input("Entrez le titre de l'œuvre à retirer : ").strip()
-            oeuvre = trouver_oeuvre_par_titre(oeuvres, titre)
-            if oeuvre:
-                collection.enlever_oeuvre(oeuvre)
-        elif action == 'terminer':
-            break
-        else:
-            print("Choix invalide.")
+    if collection:
+        while True:
+            action = input("Voulez-vous 'ajouter', 'retirer' une œuvre ou 'terminer' ? (ajouter/retirer/terminer) : ").strip().lower()
+            if action == 'ajouter':
+                ajouter_oeuvres_multiples_a_collection(oeuvres, collection)
+            elif action == 'retirer':
+                retirer_oeuvre_de_collection(oeuvres, collection)
+            elif action == 'terminer':
+                break
+            else:
+                print("Choix invalide. Veuillez choisir 'ajouter', 'retirer' ou 'terminer'.")
+                
+
+
 
 def gerer_expositions(collections, expositions):
     choix = input("Voulez-vous 'créer' une nouvelle exposition, 'modifier' une exposition existante, ou 'voir' les expositions existantes ? (créer/modifier/voir) : ").strip().lower()
@@ -240,7 +254,6 @@ def gerer_expositions(collections, expositions):
         print("Choix invalide.")
 
 
-      
 def gerer_invites(exposition):
     while True:
         action = input("Voulez-vous 'ajouter' des invités, 'enlever' des invités, ou 'terminer' ? (ajouter/enlever/terminer) ").strip().lower()
@@ -318,6 +331,37 @@ def supprimer_exposition(expositions):
         print(f"Aucune exposition trouvée pour la date {date}.")
 
 
+
+def supprimer_oeuvre(oeuvres, collections):
+    titre = input("Entrez le titre de l'\u0153uvre à supprimer : ").strip()
+    oeuvre = trouver_oeuvre_par_titre(oeuvres, titre)
+    if oeuvre:
+        for collection in collections:
+            collection.supprimer_oeuvre(oeuvre)
+        oeuvres.remove(oeuvre)
+        print(f"L'\u0153uvre '{titre}' a été supprimée de toutes les collections et du système.")
+    else:
+        print(f"L'\u0153uvre '{titre}' n'a pas été trouvée.")
+
+def supprimer_collection(collections, expositions):
+    nom = input("Entrez le nom de la collection à supprimer : ").strip()
+    collection = next((c for c in collections if c.nom == nom), None)
+    if collection:
+        for exposition in expositions:
+            exposition.supprimer_collection(collection)
+        collections.remove(collection)
+        print(f"La collection '{nom}' a été supprimée de toutes les expositions et du système.")
+    else:
+        print(f"La collection '{nom}' n'a pas été trouvée.")
+
+def supprimer_exposition(expositions):
+    date = input("Entrez la date de l'exposition à supprimer (AAAA-MM-JJ) : ").strip()
+    exposition = next((e for e in expositions if e.date == date), None)
+    if exposition:
+        expositions.remove(exposition)
+        print(f"L'exposition prévue le {date} a été supprimée.")
+    else:
+        print(f"Aucune exposition trouvée pour la date {date}.")
 
 
 def main():
