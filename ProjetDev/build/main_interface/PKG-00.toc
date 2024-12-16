@@ -1,0 +1,100 @@
+('C:\\Users\\scawp\\OneDrive - EPHEC asbl\\Devloppement_Informatique\\projet '
+ 'dev pyhton en '
+ 'groupe\\projet_dev_ba2\\ProjetDev\\build\\main_interface\\main_interface.pkg',
+ {'BINARY': True,
+  'DATA': True,
+  'EXECUTABLE': True,
+  'EXTENSION': True,
+  'PYMODULE': True,
+  'PYSOURCE': True,
+  'PYZ': False,
+  'SPLASH': True,
+  'SYMLINK': False},
+ [('pyi-contents-directory _internal', '', 'OPTION'),
+  ('PYZ-00.pyz',
+   'C:\\Users\\scawp\\OneDrive - EPHEC asbl\\Devloppement_Informatique\\projet '
+   'dev pyhton en '
+   'groupe\\projet_dev_ba2\\ProjetDev\\build\\main_interface\\PYZ-00.pyz',
+   'PYZ'),
+  ('struct',
+   'C:\\Users\\scawp\\OneDrive - EPHEC asbl\\Devloppement_Informatique\\projet '
+   'dev pyhton en '
+   'groupe\\projet_dev_ba2\\ProjetDev\\build\\main_interface\\localpycs\\struct.pyc',
+   'PYMODULE'),
+  ('pyimod01_archive',
+   'C:\\Users\\scawp\\OneDrive - EPHEC asbl\\Devloppement_Informatique\\projet '
+   'dev pyhton en '
+   'groupe\\projet_dev_ba2\\ProjetDev\\build\\main_interface\\localpycs\\pyimod01_archive.pyc',
+   'PYMODULE'),
+  ('pyimod02_importers',
+   'C:\\Users\\scawp\\OneDrive - EPHEC asbl\\Devloppement_Informatique\\projet '
+   'dev pyhton en '
+   'groupe\\projet_dev_ba2\\ProjetDev\\build\\main_interface\\localpycs\\pyimod02_importers.pyc',
+   'PYMODULE'),
+  ('pyimod03_ctypes',
+   'C:\\Users\\scawp\\OneDrive - EPHEC asbl\\Devloppement_Informatique\\projet '
+   'dev pyhton en '
+   'groupe\\projet_dev_ba2\\ProjetDev\\build\\main_interface\\localpycs\\pyimod03_ctypes.pyc',
+   'PYMODULE'),
+  ('pyimod04_pywin32',
+   'C:\\Users\\scawp\\OneDrive - EPHEC asbl\\Devloppement_Informatique\\projet '
+   'dev pyhton en '
+   'groupe\\projet_dev_ba2\\ProjetDev\\build\\main_interface\\localpycs\\pyimod04_pywin32.pyc',
+   'PYMODULE'),
+  ('pyiboot01_bootstrap',
+   'C:\\Users\\scawp\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PyInstaller\\loader\\pyiboot01_bootstrap.py',
+   'PYSOURCE'),
+  ('pyi_rth_inspect',
+   'C:\\Users\\scawp\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
+   'PYSOURCE'),
+  ('main_interface',
+   'C:\\Users\\scawp\\OneDrive - EPHEC asbl\\Devloppement_Informatique\\projet '
+   'dev pyhton en groupe\\projet_dev_ba2\\ProjetDev\\main_interface.py',
+   'PYSOURCE'),
+  ('python310.dll',
+   'C:\\Users\\scawp\\AppData\\Local\\Programs\\Python\\Python310\\python310.dll',
+   'BINARY'),
+  ('_decimal.pyd',
+   'C:\\Users\\scawp\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\_decimal.pyd',
+   'EXTENSION'),
+  ('_hashlib.pyd',
+   'C:\\Users\\scawp\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\_hashlib.pyd',
+   'EXTENSION'),
+  ('unicodedata.pyd',
+   'C:\\Users\\scawp\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\unicodedata.pyd',
+   'EXTENSION'),
+  ('select.pyd',
+   'C:\\Users\\scawp\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\select.pyd',
+   'EXTENSION'),
+  ('_socket.pyd',
+   'C:\\Users\\scawp\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\_socket.pyd',
+   'EXTENSION'),
+  ('_lzma.pyd',
+   'C:\\Users\\scawp\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\_lzma.pyd',
+   'EXTENSION'),
+  ('_bz2.pyd',
+   'C:\\Users\\scawp\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\_bz2.pyd',
+   'EXTENSION'),
+  ('VCRUNTIME140.dll',
+   'C:\\Users\\scawp\\AppData\\Local\\Programs\\Python\\Python310\\VCRUNTIME140.dll',
+   'BINARY'),
+  ('libcrypto-1_1.dll',
+   'C:\\Users\\scawp\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\libcrypto-1_1.dll',
+   'BINARY'),
+  ('donnees.json',
+   'C:\\Users\\scawp\\OneDrive - EPHEC asbl\\Devloppement_Informatique\\projet '
+   'dev pyhton en groupe\\projet_dev_ba2\\ProjetDev\\donnees.json',
+   'DATA'),
+  ('base_library.zip',
+   'C:\\Users\\scawp\\OneDrive - EPHEC asbl\\Devloppement_Informatique\\projet '
+   'dev pyhton en '
+   'groupe\\projet_dev_ba2\\ProjetDev\\build\\main_interface\\base_library.zip',
+   'DATA')],
+ 'python310.dll',
+ False,
+ False,
+ False,
+ [],
+ None,
+ None,
+ None)

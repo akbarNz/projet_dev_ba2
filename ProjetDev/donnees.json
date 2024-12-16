@@ -1,10 +1,12 @@
 {
-    "artistes": [
-    ],
-    "oeuvres": [
-    ],
-    "collections": [
-    ],
+    "artistes": [],
+    "oeuvres": [],
+    "collections": [],
     "expositions": [
+        {
+            "collections": [],
+            "date": "20/20/20",
+            "invités": []
+        }
     ]
 }
