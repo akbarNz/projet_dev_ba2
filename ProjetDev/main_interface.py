@@ -26,8 +26,8 @@ def valider_format_date(date_str):
     annee, mois, jour = match.groups()
 
     try:
-        # Vérifie si la date est valide pour ce mois, par exemple, pas de 30 février.
-        datetime(int(annee), int(mois), int(jour))
+        annee_positive = abs(int(annee))
+        datetime(annee_positive, int(mois), int(jour))
         return True
     except ValueError:
         return False
@@ -342,9 +342,6 @@ def gerer_invites(exposition):
             break
         else:
             print("Action non reconnue. Veuillez entrer 'ajouter', 'enlever', ou 'terminer'.")
-
-
-
 
 def sauvegarder_donnees(fichier, artistes, oeuvres, collections, expositions):
     data = {
