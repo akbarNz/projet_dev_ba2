@@ -117,7 +117,8 @@ def ajouter_oeuvres_multiples_a_collection(oeuvres, collection):
         for oeuvre in oeuvres_nouvelles:
             collection.ajouter_oeuvre(oeuvre)
             print(f"'{oeuvre.titre}' a été ajoutée à la collection '{collection.nom}'.")
-        print(f"{len(oeuvres_nouvelles)} œuvre(s) ajoutée(s) à la collection.")
+        #print(f"{len(oeuvres_nouvelles)} œuvre(s) ajoutée(s) à la collection.")
+        print(f"{len(collection.oeuvres)} œuvre(s) ajoutée(s) à la collection.")
     else:
         if not oeuvres_deja_presentes:
             print("Aucune œuvre à ajouter selon les critères spécifiés.")
@@ -165,7 +166,35 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
         print(f"Nouvelle œuvre créée : {oeuvre}")
         return oeuvre
     return None
-      
+
+# NOUVEAU
+def input_critere_tris():
+    """demande les criteres de tri à l'utilisateur. Renvoie un tuple (date:bool, nom:bool)"""
+    d = input("trier par la date d'apparition des oeuvres [y/n]: ")
+    t = input("trier par le nom de l'oeuvre [y/n]: ")
+
+    correct = False
+    while not correct:
+        if len(d) == 1 and len(t) == 1 and d.strip().lower() in 'ny' and t.strip().lower() in 'ny':
+            correct = True
+        else:
+            print("valeur incorrect. veillez choisir entre [y/n]")
+            d = input("trier par la date d'apparition des oeuvres [y/n]: ")
+            t = input("trier par le nom de l'oeuvre [y/n]: ")
+
+    if d == 'y' and t == 'y':
+        return True, True
+    elif d == 'n' and t == 'n':
+        # tri par defaut est par date apparition
+        return True, False
+    elif d == 'y' and t == 'n':
+        # tri par defaut est par date apparition
+        return True, False
+    elif t == 'y' and d == 'n':
+        #tri par le nom de l'oeuvre
+        return False, True
+
+
 def gerer_collection(artistes, oeuvres, collections):
     choix_collection = input("Voulez-vous 'créer' une nouvelle collection ou 'modifier' une collection existante ? (créer/modifier) : ").strip().lower()
     collection = None
@@ -188,7 +217,7 @@ def gerer_collection(artistes, oeuvres, collections):
         return
 
     while True:
-        action = input("Voulez-vous ajouter 'une' oeuvre, 'plusieurs' oeuvres, 'supprimer' une oeuvre, ou 'supprimer' la collection ? (une/plusieurs/supprimer/supprimer_collection) : ").strip().lower()
+        action = input("Voulez-vous ajouter 'une' oeuvre, 'plusieurs' oeuvres, 'trier' la collection 'supprimer' une oeuvre, ou 'supprimer' la collection ? (une/plusieurs/trier/supprimer/supprimer_collection) : ").strip().lower()
         if action == 'une':
             oeuvre = ajouter_ou_trouver_oeuvre(artistes, oeuvres)
             if oeuvre:
@@ -196,6 +225,17 @@ def gerer_collection(artistes, oeuvres, collections):
                 print(f"L'oeuvre '{oeuvre.titre}' a été ajoutée à la collection '{nom_collection}'.")
         elif action == 'plusieurs':
             ajouter_oeuvres_multiples_a_collection(oeuvres, collection)
+        # NOUVEAU
+        elif action == 'trier':
+            # verifie si collection vide
+            if collection.est_vide():
+                print("Collection vide. veillez rajouter des oeuvres avant de trier")
+            else:
+                # demander les criteres
+                criteres = input_critere_tris()
+                collection.tri_col(criteres[0], criteres[1])
+                # affiche la collection trié
+                print(collection)
         elif action == 'supprimer':
             oeuvre_a_supprimer = choisir_oeuvre_a_supprimer(collection)
             if oeuvre_a_supprimer:

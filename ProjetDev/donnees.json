@@ -14,7 +14,65 @@
         }
     ],
     "oeuvres": [
+        {
+            "titre": "Les Demoiselles d'Avignon",
+            "description": "Une œuvre révolutionnaire qui introduit les éléments du cubisme.",
+            "apparition": "1907",
+            "artiste": "Pablo Picasso",
+            "couleur_dominante": "rouge",
+            "courant": "Cubisme"
+        },
+        {
+            "titre": "Guernica",
+            "description": "Un puissant tableau contre la guerre, représentant le bombardement de Guernica",
+            "apparition": "1937",
+            "artiste": "Pablo Picasso",
+            "couleur_dominante": "rouge",
+            "courant": "Cubisme"
+        },
+        {
+            "titre": "Le Rêve",
+            "description": "Un portrait vibrant et sensuel de Marie-Thérèse Walter.",
+            "apparition": "1932",
+            "artiste": "Pablo Picasso",
+            "couleur_dominante": "rose",
+            "courant": "Cubisme"
+        },
+        {
+            "titre": "La Persistance de la Mémoire",
+            "description": "Les montres molles qui symbolisent la relativité du temps.",
+            "apparition": "1931",
+            "artiste": "Salvador Dali",
+            "couleur_dominante": "orange",
+            "courant": "Surréalisme"
+        },
+        {
+            "titre": "Swans Reflecting Elephants",
+            "description": "Un jeu visuel fascinant où les cygnes se transforment en éléphants.",
+            "apparition": "1937",
+            "artiste": "Salvador Dali",
+            "couleur_dominante": "rose",
+            "courant": "Surréalisme"
+        },
+        {
+            "titre": "JohnDoe",
+            "description": "john doe",
+            "apparition": "2022",
+            "artiste": "Pablo Picasso",
+            "couleur_dominante": "blanc",
+            "courant": "Cubisme"
+        }
     ],
-    "collections": [],
+    "collections": [
+        {
+            "nom": "Le genie du cubisme",
+            "oeuvres": [
+                "Guernica",
+                "JohnDoe",
+                "Le Rêve",
+                "Les Demoiselles d'Avignon"
+            ]
+        }
+    ],
     "expositions": []
 }

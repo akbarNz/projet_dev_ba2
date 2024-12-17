@@ -1,3 +1,5 @@
+from operator import attrgetter
+
 class Collection:
     def __init__(self, nom):
         self._nom = nom
@@ -41,6 +43,31 @@ class Collection:
             if oeuvre:
                 collection.ajouter_oeuvre(oeuvre)
         return collection
+    # nouveau
 
-    def tri_col(self):
-        pass
+    def est_vide(self):
+        """collection vide.Renvoie True si vide, False sinon"""
+        return len(self.oeuvres) == 0
+    
+    def tri_col(self, date_apparition, titre):
+        """trie la collection d'oeuvres par la date d'apparition (majeure) tri par defaut et/ou titre (mineure)"""
+        if date_apparition:
+            # tri par date d'apparition des oeuvres
+            self._tri_oeuvres_apparition()
+            # tri par titre
+            if titre:
+                self._tri_oeuvres_titre()
+        elif titre:
+            # tri oeuvre par titre
+            self._tri_oeuvres_titre()
+        else:
+            # tri par date d'apparition defaut
+            self._tri_oeuvres_apparition()
+    
+    def _tri_oeuvres_apparition(self):
+        """Trier les oeuvres par le date d'apparition"""
+        self.oeuvres.sort(key=attrgetter('date_apparition'))
+    
+    def _tri_oeuvres_titre(self):
+        """Trier les oeuvres par leur titre"""
+        self.oeuvres.sort(key=attrgetter('titre'))
