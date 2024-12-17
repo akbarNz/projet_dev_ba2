@@ -1,6 +1,20 @@
 {
-    "artistes": [],
-    "oeuvres": [],
+    "artistes": [
+        {
+            "identite": "Pablo Picasso",
+            "biographie": "Peintre espagnol co-fondateur du cubisme",
+            "date_naissance": "1881-10-25",
+            "date_deces": "1973-04-08"
+        },
+        {
+            "identite": "Salvador Dali",
+            "biographie": "Peintre espagnol connu pour ses rêves étranges. Anecdote : Dalí se promenait parfois dans Paris avec un fourmilier en laisse, attirant l'attention partout où il allait.",
+            "date_naissance": "1904-05-11",
+            "date_deces": "1989-01-23"
+        }
+    ],
+    "oeuvres": [
+    ],
     "collections": [],
     "expositions": []
 }

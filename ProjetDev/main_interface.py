@@ -146,6 +146,7 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
 
     if input("Œuvre non trouvée. Voulez-vous la créer ? (oui/non): ").strip().lower() == "oui":
         description = input("Description de l'œuvre: ").strip()
+        apparition = input("l'année d'apparition de l'oeuvre : AAAA")
         couleur_dominante = input("Couleur dominante: ").strip()
         courant = input("Courant artistique: ").strip()
         choix_artiste = input("Artiste connu ? (oui/non): ")
@@ -155,6 +156,7 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
         oeuvre = Oeuvre(
             titre=titre,
             description=description,
+            date_apparition=apparition,
             artiste=artiste,
             couleur_dominante=couleur_dominante,
             courant=courant
@@ -344,6 +346,7 @@ def gerer_invites(exposition):
             print("Action non reconnue. Veuillez entrer 'ajouter', 'enlever', ou 'terminer'.")
 
 def sauvegarder_donnees(fichier, artistes, oeuvres, collections, expositions):
+    # ajout de tri avant la sauvegarde par exemple
     data = {
         "artistes": [artiste.to_dict() for artiste in artistes],
         "oeuvres": [oeuvre.to_dict() for oeuvre in oeuvres],
