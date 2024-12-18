@@ -183,7 +183,33 @@ def input_critere_tris():
             
     return d
     
+def recommander_oeuvres(oeuvre, lst_oeuvres):
+    """recommander les oeuvres meme artiste, courant ou couleur dominante. Renvoie un str"""
+    tmp = {}
 
+    for o in lst_oeuvres:
+        if oeuvre.titre != o.titre:
+            if oeuvre.artiste.identite not in tmp and oeuvre.artiste.identite == o.artiste.identite:
+                tmp[oeuvre.artiste.identite] = f"{o.titre}: {o.description}\n"
+            elif oeuvre.artiste.identite == o.artiste.identite:
+                tmp[oeuvre.artiste.identite] += f"{o.titre}: {o.description}\n"
+            
+            if oeuvre.courant not in tmp and oeuvre.courant == o.courant:
+                tmp[oeuvre.courant] = f"{o.titre}: {o.description}, par {o.artiste.identite}.\n"
+            elif oeuvre.courant == o.courant:
+                tmp[oeuvre.courant] += f"{o.titre}: {o.description}, par {o.artiste.identite}.\n"
+
+            if oeuvre.couleur_dominante not in tmp and oeuvre.couleur_dominante == o.couleur_dominante:
+                tmp[oeuvre.couleur_dominante] = f"{o.titre}\n"
+            elif oeuvre.couleur_dominante == o.couleur_dominante:
+                tmp[oeuvre.couleur_dominante] += f"{o.titre}\n"
+    
+    s = f"{'-'*90}\nRecommandations des oeuvres du meme artiste, courant et similaires\n{'-'*90}\n"
+
+    for k in tmp.keys():
+            s += f"{k} : {tmp[k]}\n{'-'*90}\n"
+
+    return s
 
 def gerer_collection(artistes, oeuvres, collections):
     choix_collection = input("Voulez-vous 'créer' une nouvelle collection ou 'modifier' une collection existante ? (créer/modifier) : ").strip().lower()
@@ -213,6 +239,8 @@ def gerer_collection(artistes, oeuvres, collections):
             if oeuvre:
                 collection.ajouter_oeuvre(oeuvre)
                 print(f"L'oeuvre '{oeuvre.titre}' a été ajoutée à la collection '{nom_collection}'.")
+                # afficher les recommandations
+                print(recommander_oeuvres(oeuvre, oeuvres))
         elif action == 'plusieurs':
             ajouter_oeuvres_multiples_a_collection(oeuvres, collection)
         # NOUVEAU
