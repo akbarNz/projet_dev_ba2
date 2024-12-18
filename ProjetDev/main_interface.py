@@ -170,29 +170,19 @@ def ajouter_ou_trouver_oeuvre(artistes, oeuvres):
 # NOUVEAU
 def input_critere_tris():
     """demande les criteres de tri à l'utilisateur. Renvoie un tuple (date:bool, nom:bool)"""
-    d = input("trier par la date d'apparition des oeuvres [y/n]: ")
-    t = input("trier par le nom de l'oeuvre [y/n]: ")
-
+    d = input("trier la collection suivant l'un de ce critères date, titre, couleur, courant [d/t/c/m]: ")
+    
+    v = 'cdtm'
     correct = False
     while not correct:
-        if len(d) == 1 and len(t) == 1 and d.strip().lower() in 'ny' and t.strip().lower() in 'ny':
+        if len(d) == 1 and d.strip().lower() in v:
             correct = True
         else:
-            print("valeur incorrect. veillez choisir entre [y/n]")
-            d = input("trier par la date d'apparition des oeuvres [y/n]: ")
-            t = input("trier par le nom de l'oeuvre [y/n]: ")
-
-    if d == 'y' and t == 'y':
-        return True, True
-    elif d == 'n' and t == 'n':
-        # tri par defaut est par date apparition
-        return True, False
-    elif d == 'y' and t == 'n':
-        # tri par defaut est par date apparition
-        return True, False
-    elif t == 'y' and d == 'n':
-        #tri par le nom de l'oeuvre
-        return False, True
+            print("valeur incorrect. veillez choisir entre [d/t/c/m]")
+            d = input("trier la collection suivant l'un de ce critères date, titre, couleur, courant [d/t/c/m]: ")
+            
+    return d
+    
 
 
 def gerer_collection(artistes, oeuvres, collections):
@@ -231,9 +221,22 @@ def gerer_collection(artistes, oeuvres, collections):
             if collection.est_vide():
                 print("Collection vide. veillez rajouter des oeuvres avant de trier")
             else:
-                # demander les criteres
-                criteres = input_critere_tris()
-                collection.tri_col(criteres[0], criteres[1])
+                # demander le critere
+                d = input_critere_tris()
+                v = 'cdtm'
+                if d == v[0]:
+                    # tri par couleur 
+                    print(collection.tri_oeuvres_couleur_dominante())
+                elif d == v[1]:
+                    # tri par date apparition
+                    print(collection.tri_oeuvres_apparition())
+                elif d == v[2]:
+                    # tri par titre
+                    print(collection.tri_oeuvres_titre())
+                elif d == v[3]:
+                    #tri par le courant (mouvement)
+                    print(collection.tri_par_courant())
+                
                 # affiche la collection trié
                 print(collection)
         elif action == 'supprimer':

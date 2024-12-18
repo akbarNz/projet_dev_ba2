@@ -49,25 +49,68 @@ class Collection:
         """collection vide.Renvoie True si vide, False sinon"""
         return len(self.oeuvres) == 0
     
-    def tri_col(self, date_apparition, titre):
-        """trie la collection d'oeuvres par la date d'apparition (majeure) tri par defaut et/ou titre (mineure)"""
-        if date_apparition:
-            # tri par date d'apparition des oeuvres
-            self._tri_oeuvres_apparition()
-            # tri par titre
-            if titre:
-                self._tri_oeuvres_titre()
-        elif titre:
-            # tri oeuvre par titre
-            self._tri_oeuvres_titre()
-        else:
-            # tri par date d'apparition defaut
-            self._tri_oeuvres_apparition()
     
-    def _tri_oeuvres_apparition(self):
-        """Trier les oeuvres par le date d'apparition"""
+    def tri_oeuvres_apparition(self):
+        """Trier les oeuvres par le date d'apparition. Renvoie une str"""
         self.oeuvres.sort(key=attrgetter('date_apparition'))
+        tmp = {}
+
+        for o in self.oeuvres:
+            if o.date_apparition not in tmp:
+                tmp[o.date_apparition] = [o.titre]
+            else:
+                tmp[o.date_apparition].append(o.titre)
+        
+        s = "Les oeuvres triés par date d'apparition.\n"
+        for k in tmp.keys():
+            s += f"{k} : {tmp[k]}\n"
+        return s
     
-    def _tri_oeuvres_titre(self):
-        """Trier les oeuvres par leur titre"""
+    def tri_oeuvres_titre(self):
+        """Trier les oeuvres par leur titre. Renvoie une str"""
         self.oeuvres.sort(key=attrgetter('titre'))
+
+        tmp = {}
+
+        for o in self.oeuvres:
+            if o.titre not in tmp:
+                tmp[o.titre] = o.description
+            else:
+                tmp[o.titre].append(o.description)
+        
+        s = "Les oeuvres triés par titre.\n"
+        for k in tmp.keys():
+            s += f"{k} : {tmp[k]}\n"
+        return s
+    
+    def tri_oeuvres_couleur_dominante(self):
+        """Triez les oeuvres par la couleur dominante. renvoie une str de la representation du tri"""
+        self.oeuvres.sort(key=attrgetter('couleur_dominante'))
+        tmp = {}
+
+        for o in self.oeuvres:
+            if o.couleur_dominante not in tmp:
+                tmp[o.couleur_dominante] = [o.titre]
+            else:
+                tmp[o.couleur_dominante].append(o.titre)
+        
+        s = "Les oeuvres triés par couleur dominante.\n"
+        for k in tmp.keys():
+            s += f"{k} : {tmp[k]}\n"
+        return s
+    
+    def tri_par_courant(self):
+        """trier les oeuvres par courant. renvoie une str de la representation du tri"""
+        self.oeuvres.sort(key=attrgetter('courant'))
+        tmp = {}
+
+        for o in self.oeuvres:
+            if o.courant not in tmp:
+                tmp[o.courant] = [o.titre]
+            else:
+                tmp[o.courant].append(o.titre)
+        
+        s = "Les oeuvres triés par courant.\n"
+        for k in tmp.keys():
+            s += f"{k} : {tmp[k]}\n"
+        return s
